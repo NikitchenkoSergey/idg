@@ -1,6 +1,7 @@
 <?php
 namespace Idg;
 
+use Idg\Elements\AbsoluteBlock;
 use Idg\Elements\Column;
 use Idg\Elements\Document;
 use Idg\Elements\Element;
@@ -128,6 +129,31 @@ class Idg
      * End block
      */
     public function endBlock()
+    {
+        $this->endElement();
+    }
+
+    /**
+     * Begin absolute block
+     * @param null $top
+     * @param null $left
+     * @param null $width
+     * @param null $height
+     */
+    public function beginAbsoluteBlock($top, $left, $width = null, $height = null)
+    {
+        /** @var AbsoluteBlock $element */
+        $element = $this->beginElement(AbsoluteBlock::class);
+        $element->width = $width;
+        $element->staticHeight = $height;
+        $element->top = $top;
+        $element->left = $left;
+    }
+
+    /**
+     * End block
+     */
+    public function endAbsoluteBlock()
     {
         $this->endElement();
     }

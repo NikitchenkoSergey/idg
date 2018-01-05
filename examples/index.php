@@ -9,12 +9,12 @@ $fontRobotoBold = 'RobotoCondensed-Regular.ttf';
 
 $idg = new \Idg\Idg(1000, 3000, null, new ImagickPixel('#fff'));
 
-$idg->beginDocument(40, 20, 40, 20);
+$idg->beginDocument(40, 30, 40, 30);
     $idg->beginBlock(30);
         $idg->text('Lorem ipsum dolor sit amet', $fontRobotoBold, 26, '#000', Imagick::ALIGN_LEFT);
     $idg->endBlock();
 
-    $idg->beginBlock(20, 0, 980);
+    $idg->beginBlock(20, 0, 960);
         $idg->text('Lorem ipsum dolor sit amet, 
         consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
         velit esse cillum dolore eu fugiat nulla pariatur. 
@@ -83,6 +83,10 @@ $idg->beginDocument(40, 20, 40, 20);
             $idg->image(0, 30, 'test_image.jpg');
         $idg->endColumn();
     $idg->endRow();
+
+$idg->beginAbsoluteBlock(370, 70, 170);
+$idg->text('Absolute block on bear', $fontRobotoBold, 28, 'green', Imagick::ALIGN_CENTER);
+$idg->endAbsoluteBlock();
 
 $idg->endDocument();
 $idg->compose();

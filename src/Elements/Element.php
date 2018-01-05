@@ -98,7 +98,7 @@ class Element
     }
 
     /**
-     * Get left
+     * Get left offset
      * @return int
      */
     public function getLeftOffset()
