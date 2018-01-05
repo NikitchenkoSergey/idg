@@ -89,6 +89,7 @@ $idg->text('Absolute block on bear', $fontRobotoBold, 28, 'green', Imagick::ALIG
 $idg->endAbsoluteBlock();
 
 $idg->endDocument();
+
 $idg->compose();
 
 header('Content-Type: image/' . $idg->getCanvas()->getImageFormat());

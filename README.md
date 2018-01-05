@@ -6,7 +6,7 @@ Fast and simple document image generator. This is a wrapper over Imagick with wh
 See: examples/index.php
 
 # Requirements
-PHP 5.6+, `Imagick` extension.
+PHP 5.5+, `Imagick` extension.
 
 # Installation
 composer require idg/idg
@@ -51,3 +51,9 @@ print $idg->getImageBlob();
 | `$idg->getCanvas()` | Return Imagick object. |
 | `$idg->compose()` | Composing blocks. |
 | `$idg->getImageBlob()` | Returning image result blob. |
+
+For more customization you can use $idg->getCanvas() after compose():
+```php
+$idg->compose();
+$idg->getCanvas()->gaussianBlurImage(10, 20);
+```
