@@ -90,6 +90,6 @@ $idg->endAbsoluteBlock();
 
 $idg->endDocument();
 $idg->compose();
-//print_r($idg); die();
+
 header('Content-Type: image/' . $idg->getCanvas()->getImageFormat());
 print $idg->getImageBlob();
