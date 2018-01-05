@@ -1,0 +1,20 @@
+{
+    "name": "idg/idg",
+    "description": "Image document generator",
+    "keywords": ["php", "image", "document", "generator"],
+    "homepage": "https://idg.github.io",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikitchenko Sergey",
+            "email": "nikitchenko.sergey@yandex.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Idg\\": "src/"
+        }
+    }
+}
