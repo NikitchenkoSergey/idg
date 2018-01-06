@@ -75,7 +75,9 @@ print $idg->getImageBlob();
 <p align="center">
        <img src="http://nikitchenko.ru/idg/example3.png" alt="Example" />
 </p>
+See: examples/custom_element.php
 Custom element must be instance from Element (or children)
+
 ```php
 /**
  * Custom element with green background
@@ -102,7 +104,7 @@ class GreenBlock extends \Idg\Elements\Element
         $this->getIdg()->getCanvas()->drawImage($draw);
     }
 }
-
+$customBlock = new GreenBlock();
 // .....
 $idg->beginElement($customBlock);
 // .....
@@ -110,9 +112,7 @@ $idg->endElement();
 // .....
 ```
 
-See: examples/custom_element.php
-
-For more customization you can use $idg->getCanvas():
+For more customization you can use standart Imagick methods:
 ```php
 $idg->compose();
 $idg->getCanvas()->gaussianBlurImage(10, 20);
