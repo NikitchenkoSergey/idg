@@ -1,9 +1,16 @@
-# Image document generator (IGD)
+# Image document generator (IDG)
 Fast and simple document image generator. This is a wrapper over Imagick with which you can create such images:
 <p align="center">
        <img src="http://nikitchenko.ru/idg/example1.png" width="550" alt="Example" />
 </p>
 See: examples/index.php
+
+### Features
+* Any elements count and structure
+* Possibility to create custom elements
+* Simple markup (like html)
+* Possibility to custom canvas by Imagick methods
+* Faster and more optimal that html->pdf->image
 
 # Requirements
 PHP 5.5+, `Imagick` extension.
@@ -62,7 +69,7 @@ print $idg->getImageBlob();
 | `$idg->beginColumn($width)` | Begin column. |
 | `$idg->endColumn()` | End column. |
 | `$idg->image($top, $left, $file, $fromBlob = false)` | Adding image. |
-| `$idg->text($content, $font, $fontSize = 16, $textColor = 'black', $align = Imagick::ALIGN_LEFT)` | Adding tet. |
+| `$idg->text($content, $font, $fontSize = 16, $textColor = 'black', $align = Imagick::ALIGN_LEFT)` | Adding text. |
 | `$idg->addElement(Element $element)` | Add custom element. |
 | `$idg->getCanvas()` | Return Imagick object. |
 | `$idg->compose()` | Composing blocks. |
