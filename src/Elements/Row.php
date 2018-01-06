@@ -20,14 +20,14 @@ class Row extends Element
             $children = $this->getChildren();
             $maxHeight = 0;
             foreach ($children as $child) {
-                $columnHeight = 0;
-                $columnHeight += $child->getTop();
-                $columnHeight += $child->getHeight();
+                $columnHeight = $child->getOuterHeight();
                 if ($columnHeight > $maxHeight) {
                     $maxHeight = $columnHeight;
                 }
             }
             $height = $maxHeight;
+
+            $height += $this->marginBottom;
         }
 
         return $height;

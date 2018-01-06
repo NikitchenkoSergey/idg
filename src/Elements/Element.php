@@ -51,6 +51,11 @@ class Element
     public $staticHeight;
 
     /**
+     * @var integer
+     */
+    public $marginBottom;
+
+    /**
      * @param Element $element
      */
     public function setParent(Element $element)
@@ -157,6 +162,8 @@ class Element
                 $height += $child->getOuterHeight();
             }
         }
+
+        $height += $this->marginBottom;
 
         return $height;
     }
@@ -270,6 +277,14 @@ class Element
         return $result;
     }
 
+
+    /**
+     * Before rendering
+     */
+    public function beforeRender()
+    {
+
+    }
 
     /**
      * Rendering element

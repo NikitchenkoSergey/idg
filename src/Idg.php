@@ -10,6 +10,7 @@ use Idg\Elements\Image;
 use Idg\Elements\Row;
 use Idg\Elements\Text;
 use Idg\Exceptions\Exception;
+use Idg\Exceptions\StructureException;
 use Imagick;
 use ImagickPixel;
 use ImagickDraw;
@@ -64,16 +65,23 @@ class Idg
 
     /**
      * Composing image
-     * @throws Exception
+     * @throws StructureException
      */
     public function compose()
     {
         if ($this->openedElement) {
-            throw new Exception('Element not closed');
+            throw new StructureException('Element not closed');
         }
 
         if (empty($this->elements)) {
-            throw new Exception('Nothing to compose');
+            throw new StructureException('Nothing to compose');
+        }
+
+        /**
+         * Prepare element for render
+         */
+        foreach ($this->elements as $element) {
+            $element->beforeRender();
         }
 
         /**
@@ -85,7 +93,6 @@ class Idg
 
         /**
          * After render all elements
-         * when all has height and width
          */
         foreach ($this->elements as $element) {
             $element->afterRender();
@@ -98,13 +105,18 @@ class Idg
      * @param int $marginLeft
      * @param int $marginBottom
      * @param int $marginRight
+     * @throws StructureException
      */
     public function beginDocument($marginTop = 0, $marginLeft = 0, $marginBottom = 0, $marginRight = 0)
     {
+        if (!empty($this->elements)) {
+            throw new StructureException('Document must be first element');
+        }
+
         $document = new Document();
         $document->top = $marginTop;
         $document->left = $marginLeft;
-        $document->bottomMargin = $marginBottom;
+        $document->marginBottom = $marginBottom;
         $document->width = $this->width - ($marginLeft + $marginRight);
         $this->beginElement($document);
     }
@@ -195,12 +207,12 @@ class Idg
     /**
      * Begin column
      * @param integer $width
-     * @throws Exception
+     * @throws StructureException
      */
     public function beginColumn($width)
     {
         if (!$this->openedElement instanceof Row) {
-            throw new Exception('Column must be in Row');
+            throw new StructureException('Column must be in Row');
         }
 
         /** @var Column $element */
@@ -221,9 +233,14 @@ class Idg
     /**
      * Begin element by class
      * @param Element $element
+     * @throws StructureException
      */
     public function beginElement(Element $element)
     {
+        if (empty($this->elements) && !($element instanceof Document)) {
+            throw new StructureException('Document must be first element');
+        }
+
         $this->addElement($element);
         $this->openedElement = $element;
     }
@@ -233,6 +250,10 @@ class Idg
      */
     public function endElement()
     {
+        if (!$this->openedElement) {
+            throw new StructureException('No element for close');
+        }
+
         $this->openedElement = $this->openedElement->getParent();
     }
 
@@ -298,15 +319,15 @@ class Idg
     }
 
     /**
-     * Getting documwnt element
+     * Getting document element
      * @return Document
-     * @throws Exception
+     * @throws StructureException
      */
     public function getDocument()
     {
         $element = isset($this->elements[0]) ? $this->elements[0] : null;
         if (!$element || !($element instanceof Document)) {
-            throw new Exception('First element must be Document');
+            throw new StructureException('First element must be Document');
         }
         return $element;
     }
@@ -334,7 +355,7 @@ class Idg
     public function getImageBlob()
     {
         $document = $this->getDocument();
-        $height = $document->getHeight() + $document->bottomMargin;
+        $height = $document->getHeight();
         if ($height < $this->minHeight) {
             $height = $this->minHeight;
         }
