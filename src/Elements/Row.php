@@ -2,7 +2,10 @@
 
 namespace Idg\Elements;
 
-
+/**
+ * Class Row
+ * @package Idg\Elements
+ */
 class Row extends Element
 {
     /**

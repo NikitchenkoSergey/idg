@@ -2,7 +2,10 @@
 
 namespace Idg\Elements;
 
-
+/**
+ * Class Column
+ * @package Idg\Elements
+ */
 class Column extends Element
 {
     /**

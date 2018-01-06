@@ -1,6 +1,6 @@
 <?php
 /**
- * Examples
+ * Standart usage
  */
 include '../vendor/autoload.php';
 
@@ -9,10 +9,9 @@ $fontRobotoBold = 'RobotoCondensed-Regular.ttf';
 
 $idg = new \Idg\Idg(1000, 3000, null, new ImagickPixel('#fff'));
 
-$idg->beginDocument(40, 30, 40, 30);
-    $idg->beginBlock(30);
-        $idg->text('Lorem ipsum dolor sit amet', $fontRobotoBold, 26, '#000', Imagick::ALIGN_LEFT);
-    $idg->endBlock();
+$idg->beginDocument(20, 30, 40, 30);
+
+    $idg->text('Lorem ipsum dolor sit amet', $fontRobotoBold, 26, '#000', Imagick::ALIGN_LEFT);
 
     $idg->beginBlock(20, 0, 960);
         $idg->text('Lorem ipsum dolor sit amet, 
@@ -84,7 +83,7 @@ $idg->beginDocument(40, 30, 40, 30);
         $idg->endColumn();
     $idg->endRow();
 
-$idg->beginAbsoluteBlock(370, 70, 170);
+$idg->beginAbsoluteBlock(300, 80, 170);
 $idg->text('Absolute block on bear', $fontRobotoBold, 28, 'green', Imagick::ALIGN_CENTER);
 $idg->endAbsoluteBlock();
 

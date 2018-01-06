@@ -2,29 +2,17 @@
 
 namespace Idg\Elements;
 
-
+/**
+ * Class AbsoluteBlock
+ * @package Idg\Elements
+ */
 class AbsoluteBlock extends Element
 {
     /**
+     * Absolute block don`t increase document height
      * @inheritdoc
      */
-    public function getHeight()
-    {
-        return 0;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getTop()
-    {
-        return 0;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getLeft()
+    public function getOuterHeight()
     {
         return 0;
     }

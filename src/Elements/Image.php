@@ -3,6 +3,10 @@
 namespace Idg\Elements;
 use Imagick;
 
+/**
+ * Class Image
+ * @package Idg\Elements
+ */
 class Image extends Element
 {
     /**

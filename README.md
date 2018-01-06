@@ -67,8 +67,52 @@ print $idg->getImageBlob();
 | `$idg->getCanvas()` | Return Imagick object. |
 | `$idg->compose()` | Composing blocks. |
 | `$idg->getImageBlob()` | Returning image result blob. |
+| `$idg->beginElement(Element $element)` | Begin custom element. |
+| `$idg->andElement()` | End custom element. |
+| `$idg->addElement(Element $element)` | Add custom element. |
 
-For more customization you can use $idg->getCanvas() after compose():
+### Custom elements
+<p align="center">
+       <img src="http://nikitchenko.ru/idg/example3.png" alt="Example" />
+</p>
+Custom element must be instance from Element (or children)
+```php
+/**
+ * Custom element with green background
+ * Class GreenBlock
+ */
+class GreenBlock extends \Idg\Elements\Element
+{
+    /**
+     * @inheritdoc
+     */
+    function afterRender()
+    {
+        $draw = new \ImagickDraw();
+        $strokeColor = new \ImagickPixel('green');
+        $fillColor = new \ImagickPixel('green');
+
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
+        $draw->setFillOpacity(0.1);
+        $draw->setStrokeOpacity(1);
+        $draw->setStrokeWidth(2);
+
+        $draw->rectangle($this->getLeftOffset(), $this->getTopOffset(), $this->getLeftOffset() + $this->getWidth(), $this->getTopOffset() + $this->getHeight());
+        $this->getIdg()->getCanvas()->drawImage($draw);
+    }
+}
+
+// .....
+$idg->beginElement($customBlock);
+// .....
+$idg->endElement();
+// .....
+```
+
+See: examples/custom_element.php
+
+For more customization you can use $idg->getCanvas():
 ```php
 $idg->compose();
 $idg->getCanvas()->gaussianBlurImage(10, 20);

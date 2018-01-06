@@ -77,10 +77,18 @@ class Idg
         }
 
         /**
-         * Redering all elements by order
+         * Rendering all elements by order
          */
         foreach ($this->elements as $element) {
             $element->render();
+        }
+
+        /**
+         * After render all elements
+         * when all has height and width
+         */
+        foreach ($this->elements as $element) {
+            $element->afterRender();
         }
     }
 
@@ -93,12 +101,12 @@ class Idg
      */
     public function beginDocument($marginTop = 0, $marginLeft = 0, $marginBottom = 0, $marginRight = 0)
     {
-        /** @var Document $document */
-        $document = $this->beginElement(Document::class);
+        $document = new Document();
         $document->top = $marginTop;
         $document->left = $marginLeft;
         $document->bottomMargin = $marginBottom;
         $document->width = $this->width - ($marginLeft + $marginRight);
+        $this->beginElement($document);
     }
 
     /**
@@ -118,11 +126,12 @@ class Idg
      */
     public function beginBlock($top = null, $left = null, $width = null, $height = null)
     {
-        $element = $this->beginElement(Block::class);
+        $element = new Block();
         $element->width = $width;
         $element->staticHeight = $height;
         $element->top = $top;
         $element->left = $left;
+        $this->beginElement($element);
     }
 
     /**
@@ -142,12 +151,12 @@ class Idg
      */
     public function beginAbsoluteBlock($top, $left, $width = null, $height = null)
     {
-        /** @var AbsoluteBlock $element */
-        $element = $this->beginElement(AbsoluteBlock::class);
+        $element = new AbsoluteBlock();
         $element->width = $width;
         $element->staticHeight = $height;
         $element->top = $top;
         $element->left = $left;
+        $this->beginElement($element);
     }
 
     /**
@@ -167,12 +176,12 @@ class Idg
      */
     public function beginRow($top = null, $left = null, $width = null, $height = null)
     {
-        /** @var Row $element */
-        $element = $this->beginElement(Row::class);
+        $element = new Row();
         $element->width = $width;
         $element->staticHeight = $height;
         $element->top = $top;
         $element->left = $left;
+        $this->beginElement($element);
     }
 
     /**
@@ -195,8 +204,9 @@ class Idg
         }
 
         /** @var Column $element */
-        $element = $this->beginElement(Column::class);
+        $element = new Column();
         $element->width = $width;
+        $this->beginElement($element);
     }
 
     /**
@@ -210,15 +220,12 @@ class Idg
 
     /**
      * Begin element by class
-     * @param $class
-     * @return Element
+     * @param Element $element
      */
-    public function beginElement($class)
+    public function beginElement(Element $element)
     {
-        $element = $this->createElement($class);
         $this->addElement($element);
         $this->openedElement = $element;
-        return $element;
     }
 
     /**
@@ -239,8 +246,7 @@ class Idg
      */
     public function text($content, $font, $fontSize = 16, $textColor = 'black', $align = Imagick::ALIGN_LEFT)
     {
-        /** @var Text $element */
-        $element = $this->createElement(Text::class);
+        $element = new Text();
         // removing \n\r
         $content = preg_replace("/\r\n|\r|\n|/",'', $content);
         // removing multi spaces
@@ -271,8 +277,7 @@ class Idg
      */
     public function image($top, $left, $file, $fromBlob = false)
     {
-        /** @var Image $element */
-        $element = $this->createElement(Image::class);
+        $element = new Image();
         $element->top = $top;
         $element->left = $left;
         $element->file = $file;
@@ -285,6 +290,10 @@ class Idg
      */
     public function addElement(Element $element)
     {
+        $element->setIdg($this);
+        if ($this->openedElement) {
+            $element->setParent($this->openedElement);
+        }
         $this->elements[] = $element;
     }
 
@@ -299,23 +308,6 @@ class Idg
         if (!$element || !($element instanceof Document)) {
             throw new Exception('First element must be Document');
         }
-        return $element;
-    }
-
-    /**
-     * Creating element
-     * @param string $class
-     * @return Element
-     */
-    protected function createElement($class)
-    {
-        /** @var Element $element */
-        $element = new $class();
-        $element->setIdg($this);
-        if ($this->openedElement) {
-            $element->setParent($this->openedElement);
-        }
-
         return $element;
     }
 

@@ -5,7 +5,10 @@ namespace Idg\Elements;
 use ImagickDraw;
 use Imagick;
 
-
+/**
+ * Class Text
+ * @package Idg\Elements
+ */
 class Text extends Element
 {
     /**
@@ -47,8 +50,8 @@ class Text extends Element
             } elseif ($this->align == Imagick::ALIGN_CENTER) {
                 $leftOffset = $this->getLeftOffset() + ($this->getWidth() / 2);
             }
-            $this->getIdg()->getCanvas()->annotateImage($draw, $leftOffset, $this->getTopOffset() + $textHeight, $this->angle, $line);
             $textHeight += $textLineHeight;
+            $this->getIdg()->getCanvas()->annotateImage($draw, $leftOffset, $this->getTopOffset() + $textHeight, $this->angle, $line);
         }
         $this->increaseHeight($textHeight);
     }

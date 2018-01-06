@@ -4,6 +4,10 @@ namespace Idg\Elements;
 
 use Idg\Idg;
 
+/**
+ * Class Element
+ * @package Idg\Elements
+ */
 class Element
 {
     /**
@@ -92,6 +96,9 @@ class Element
         return $result;
     }
 
+    /**
+     * @return int
+     */
     public function getLeft()
     {
         return $this->left ? $this->left : 0;
@@ -147,12 +154,20 @@ class Element
             /** @var Element[] $children */
             $children = $this->getChildren();
             foreach ($children as $child) {
-                $height += $child->getTop();
-                $height += $child->getHeight();
+                $height += $child->getOuterHeight();
             }
         }
 
         return $height;
+    }
+
+    /**
+     * height in document
+     * @return int
+     */
+    public function getOuterHeight()
+    {
+        return $this->getTop() + $this->getHeight();
     }
 
     /**
@@ -260,6 +275,15 @@ class Element
      * Rendering element
      */
     public function render()
+    {
+
+    }
+
+    /**
+     * After rendering element
+     * when all elements has height and width
+     */
+    public function afterRender()
     {
 
     }
