@@ -33,12 +33,11 @@ class GreenBlock extends \Idg\Elements\Element
 }
 
 $customBlock = new GreenBlock();
-$customBlock->top = 20;
 $idg = new \Idg\Idg(1000, 3000);
 
 $idg->beginDocument(20, 30, 60, 30);
-    $idg->beginElement($customBlock);
-        $idg->beginBlock(10, 10, null, 110);
+    $idg->beginElement($customBlock)->setTop(20)->setPaddingBottom(25);
+        $idg->beginBlock()->setTop(10)->setLeft(10);
             $idg->text('Lorem ipsum dolor sit amet. Ut enim ad minim veniam, quis 
             nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
             Duis aute irure dolor in reprehenderit in voluptate 
@@ -46,7 +45,6 @@ $idg->beginDocument(20, 30, 60, 30);
                 $fontRobotoRegular, 26, '#000', Imagick::ALIGN_LEFT);
         $idg->endBlock();
     $idg->endElement();
-
 $idg->endDocument();
 
 $idg->compose();

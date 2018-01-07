@@ -105,6 +105,7 @@ class Idg
      * @param int $marginLeft
      * @param int $marginBottom
      * @param int $marginRight
+     * @return Element
      * @throws StructureException
      */
     public function beginDocument($marginTop = 0, $marginLeft = 0, $marginBottom = 0, $marginRight = 0)
@@ -116,9 +117,9 @@ class Idg
         $document = new Document();
         $document->top = $marginTop;
         $document->left = $marginLeft;
-        $document->marginBottom = $marginBottom;
+        $document->paddingBottom = $marginBottom;
         $document->width = $this->width - ($marginLeft + $marginRight);
-        $this->beginElement($document);
+        return $this->beginElement($document);
     }
 
     /**
@@ -131,19 +132,12 @@ class Idg
 
     /**
      * Begin relative block
-     * @param null $top
-     * @param null $left
-     * @param null $width
-     * @param null $height
+     * @return Element
      */
-    public function beginBlock($top = null, $left = null, $width = null, $height = null)
+    public function beginBlock()
     {
         $element = new Block();
-        $element->width = $width;
-        $element->staticHeight = $height;
-        $element->top = $top;
-        $element->left = $left;
-        $this->beginElement($element);
+        return $this->beginElement($element);
     }
 
     /**
@@ -158,17 +152,14 @@ class Idg
      * Begin absolute block
      * @param null $top
      * @param null $left
-     * @param null $width
-     * @param null $height
+     * @return Element
      */
-    public function beginAbsoluteBlock($top, $left, $width = null, $height = null)
+    public function beginAbsoluteBlock($top, $left)
     {
         $element = new AbsoluteBlock();
-        $element->width = $width;
-        $element->staticHeight = $height;
         $element->top = $top;
         $element->left = $left;
-        $this->beginElement($element);
+        return $this->beginElement($element);
     }
 
     /**
@@ -181,19 +172,12 @@ class Idg
 
     /**
      * Begin row
-     * @param null $top
-     * @param null $left
-     * @param null $width
-     * @param null $height
+     * @return Element
      */
-    public function beginRow($top = null, $left = null, $width = null, $height = null)
+    public function beginRow()
     {
         $element = new Row();
-        $element->width = $width;
-        $element->staticHeight = $height;
-        $element->top = $top;
-        $element->left = $left;
-        $this->beginElement($element);
+        return $this->beginElement($element);
     }
 
     /**
@@ -207,6 +191,7 @@ class Idg
     /**
      * Begin column
      * @param integer $width
+     * @return Element
      * @throws StructureException
      */
     public function beginColumn($width)
@@ -218,7 +203,7 @@ class Idg
         /** @var Column $element */
         $element = new Column();
         $element->width = $width;
-        $this->beginElement($element);
+        return $this->beginElement($element);
     }
 
     /**
@@ -233,6 +218,7 @@ class Idg
     /**
      * Begin element by class
      * @param Element $element
+     * @return Element
      * @throws StructureException
      */
     public function beginElement(Element $element)
@@ -243,6 +229,7 @@ class Idg
 
         $this->addElement($element);
         $this->openedElement = $element;
+        return $element;
     }
 
     /**
@@ -264,6 +251,7 @@ class Idg
      * @param int $fontSize
      * @param string $textColor
      * @param int $align
+     * @return Text
      */
     public function text($content, $font, $fontSize = 16, $textColor = 'black', $align = Imagick::ALIGN_LEFT)
     {
@@ -286,7 +274,7 @@ class Idg
 
         $element->fontStyle = $textDraw;
 
-        $this->addElement($element);
+        return $this->addElement($element);
     }
 
     /**
@@ -295,6 +283,7 @@ class Idg
      * @param int $left
      * @param string $file
      * @param bool $fromBlob
+     * @return Image
      */
     public function image($top, $left, $file, $fromBlob = false)
     {
@@ -303,11 +292,12 @@ class Idg
         $element->left = $left;
         $element->file = $file;
         $element->fromBlob = $fromBlob;
-        $this->addElement($element);
+        return $this->addElement($element);
     }
 
     /**
      * @param Element $element
+     * @return Element
      */
     public function addElement(Element $element)
     {
@@ -316,6 +306,7 @@ class Idg
             $element->setParent($this->openedElement);
         }
         $this->elements[] = $element;
+        return $element;
     }
 
     /**

@@ -27,7 +27,7 @@ class Row extends Element
             }
             $height = $maxHeight;
 
-            $height += $this->marginBottom;
+            $height += $this->paddingBottom;
         }
 
         return $height;

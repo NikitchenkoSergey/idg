@@ -31,7 +31,7 @@ $idg->beginDocument(40, 30, 40, 30);
  $idg->beginRow();
         $idg->beginColumn(300);
             $idg->image(0, 0, 'test_image.jpg');
-            $idg->beginBlock(0, 20);
+            $idg->beginBlock()->setLeft(20);
                 $idg->text('Figure 1. Dolore eu fugiat nulla pariatur.', $fontRegular, 14, '#555', Imagick::ALIGN_LEFT);
             $idg->endBlock();
         $idg->endColumn();
@@ -55,34 +55,61 @@ print $idg->getImageBlob();
 </p>
 
 # Methods
-| Method | Description |
-| ---| --- |
-| `Idg($width, $maxHeight, $minHeight = null, $background = null, $type = 'png')` | Creating new generator |
-| `$idg->beginDocument($marginTop = 0, $marginLeft = 0, $marginBottom = 0, $marginRight = 0)` | Begin Document. It required. |
-| `$idg->endDocument()` | End document. |
-| `$idg->beginBlock($top = null, $left = null, $width = null, $height = null)` | Begin relative block. |
-| `$idg->endBlock()` | End block. |
-| `$idg->beginAbsoluteBlock($top, $left, $width = null, $height = null)` | Begin absolute block. |
-| `$idg->endAbsoluteBlock()` | End absolute block. |
-| `$idg->beginRow($top = null, $left = null, $width = null, $height = null)` | Begin row. |
-| `$idg->endRow()` | End row. |
-| `$idg->beginColumn($width)` | Begin column. |
-| `$idg->endColumn()` | End column. |
-| `$idg->image($top, $left, $file, $fromBlob = false)` | Adding image. |
-| `$idg->text($content, $font, $fontSize = 16, $textColor = 'black', $align = Imagick::ALIGN_LEFT)` | Adding text. |
-| `$idg->addElement(Element $element)` | Add custom element. |
-| `$idg->getCanvas()` | Return Imagick object. |
-| `$idg->compose()` | Composing blocks. |
-| `$idg->getImageBlob()` | Returning image result blob. |
-| `$idg->beginElement(Element $element)` | Begin custom element. |
-| `$idg->andElement()` | End custom element. |
-| `$idg->addElement(Element $element)` | Add custom element. |
+## Idg
+| Method | | Return | Description |
+| ---| --- | --- |
+| `Idg($width, $maxHeight, $minHeight = null, $background = null, $type = 'png')` | `Idg` | Creating new generator |
+| `$idg->beginDocument($marginTop = 0, $marginLeft = 0, $marginBottom = 0, $marginRight = 0)` | Document | Begin Document. It required. |
+| `$idg->endDocument()` | | End document. |
+| `$idg->beginBlock()` | Block | Begin relative block. |
+| `$idg->endBlock()` | | End block. |
+| `$idg->beginAbsoluteBlock($top, $left)` | AbsoluteBlock | Begin absolute block. |
+| `$idg->endAbsoluteBlock()` | | End absolute block. |
+| `$idg->beginRow()` | `Row` | Begin row. |
+| `$idg->endRow()` | | End row. |
+| `$idg->beginColumn($width)` | `Column` | Begin column. |
+| `$idg->endColumn()` | | End column. |
+| `$idg->image($top, $left, $file, $fromBlob = false)` | `Image` | Adding image. |
+| `$idg->text($content, $font, $fontSize = 16, $textColor = 'black', $align = Imagick::ALIGN_LEFT)` | `Text` | Adding text. |
+| `$idg->addElement(Element $element)` | `Element` | Add custom element. |
+| `$idg->getCanvas()` | `Imagick` | Return Imagick object. |
+| `$idg->compose()` | | Composing blocks. |
+| `$idg->getImageBlob()` | `string` | Returning image result blob. |
+| `$idg->beginElement(Element $element)` | `Element` | Begin custom element. |
+| `$idg->endElement()` | | End custom element. |
+
+## Element
+| Method | | Return | Description |
+| ---| --- | --- |
+| `Element()` | `Element` | Creating new element |
+| `$element->setTop($value)` | | Setting top |
+| `$element->setLeft($value)` | | Setting left |
+| `$element->setWidth($value)` | | Setting width |
+| `$element->setPaddingBottom($value)` | | Setting padding bottom |
+| `$element->setStaticHeight($value)` | | Setting static height |
+| `$element->getParent()` | `Element|null` | Get parent element |
+| `$element->getIdg()` | `Igd` | Get igd |
+| `$element->getWidth()` | `int` | Get width or parents width |
+| `$element->getLeft()` | `int` | Get left |
+| `$element->getTop()` | `int` | Get top |
+| `$element->getTopOffset()` | `int` | Get global top offset |
+| `$element->getHeight()` | `int` | Get height with children |
+| `$element->getOuterHeight()` | `int` | Get height with top |
+| `$element->increaseHeight($value)` | | Increase self height |
+| `$element->getChildren()` | `Element[]` | List of children |
+| `$element->getSiblings()` | `Element[]` | List of siblings with current element |
+| `$element->getPrevSibling()` | `Element` | Prev sibling |
+| `$element->getPrevSiblings()` | `Element[]` | List of prev siblings |
+| `$element->getPrevSibling()` | `Element` | Prev sibling |
+| `$element->beforeRender()` | | Method will call before render document |
+| `$element->render()` | | Method will call on render document |
+| `$element->afterRender()` | | Method will call after render document |
 
 ### Custom elements
 <p align="center">
        <img src="http://nikitchenko.ru/idg/example3.png" alt="Example" />
 </p>
-See: examples/custom_element.php
+See: examples/custom_element.php <br />
 Custom element must be instance from Element (or children)
 
 ```php
@@ -113,7 +140,7 @@ class GreenBlock extends \Idg\Elements\Element
 }
 $customBlock = new GreenBlock();
 // .....
-$idg->beginElement($customBlock);
+$idg->beginElement($customBlock)->setTop(20)->setPaddingBottom(25);
 // .....
 $idg->endElement();
 // .....

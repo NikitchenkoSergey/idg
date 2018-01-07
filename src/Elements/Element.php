@@ -53,7 +53,7 @@ class Element
     /**
      * @var integer
      */
-    public $marginBottom;
+    public $paddingBottom;
 
     /**
      * @param Element $element
@@ -163,7 +163,7 @@ class Element
             }
         }
 
-        $height += $this->marginBottom;
+        $height += $this->paddingBottom;
 
         return $height;
     }
@@ -255,7 +255,7 @@ class Element
     }
 
     /**
-     * Prev sibling
+     * Prev siblings
      * @return Element[]
      */
     public function getPrevSiblings()
@@ -301,5 +301,60 @@ class Element
     public function afterRender()
     {
 
+    }
+
+    /**
+     * Setting top
+     * @param int $value
+     * @return $this
+     */
+    public function setTop($value)
+    {
+        $this->top = $value;
+        return $this;
+    }
+
+    /**
+     * Setting left
+     * @param int $value
+     * @return $this
+     */
+    public function setLeft($value)
+    {
+        $this->left = $value;
+        return $this;
+    }
+
+    /**
+     * Setting width
+     * @param int $value
+     * @return $this
+     */
+    public function setWidth($value)
+    {
+        $this->width = $value;
+        return $this;
+    }
+
+    /**
+     * Setting padding bottom
+     * @param int $value
+     * @return $this
+     */
+    public function setPaddingBottom($value)
+    {
+        $this->paddingBottom = $value;
+        return $this;
+    }
+
+    /**
+     * Setting static height
+     * @param int $value
+     * @return $this
+     */
+    public function setStaticHeight($value)
+    {
+        $this->staticHeight = $value;
+        return $this;
     }
 }
