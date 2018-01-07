@@ -30,7 +30,7 @@ $idg = new \Idg\Idg(1000, 3000, null, new ImagickPixel('#fff'));
 $idg->beginDocument(40, 30, 40, 30);
  $idg->beginRow();
         $idg->beginColumn(300);
-            $idg->image(0, 0, 'test_image.jpg');
+            $idg->image('test_image.jpg');
             $idg->beginBlock()->setLeft(20);
                 $idg->text('Figure 1. Dolore eu fugiat nulla pariatur.', $fontRegular, 14, '#555', Imagick::ALIGN_LEFT);
             $idg->endBlock();
@@ -70,7 +70,7 @@ see: examples/columns.php
 | `$idg->endRow()` | | End row. |
 | `$idg->beginColumn($width)` | `Column` | Begin column. |
 | `$idg->endColumn()` | | End column. |
-| `$idg->image($top, $left, $file, $fromBlob = false)` | `Image` | Adding image. |
+| `$idg->image($file, $fromBlob = false)` | `Image` | Adding image. |
 | `$idg->text($content, $font, $fontSize = 16, $textColor = 'black', $align = Imagick::ALIGN_LEFT)` | `Text` | Adding text. |
 | `$idg->addElement(Element $element)` | `Element` | Add custom element. |
 | `$idg->getCanvas()` | `Imagick` | Return Imagick object. |

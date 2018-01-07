@@ -90,4 +90,34 @@ class Text extends Element
 
         return $lines;
     }
+
+    /**
+     * @param int $value
+     * @return $this
+     */
+    public function setAlign($value)
+    {
+        $this->align = $value;
+        return $this;
+    }
+
+    /**
+     * @param int $value
+     * @return $this
+     */
+    public function setAngle($value)
+    {
+        $this->angle = $value;
+        return $this;
+    }
+
+    /**
+     * @param ImagickDraw $draw
+     * @return $this
+     */
+    public function setFontStyle(\ImagickDraw $draw)
+    {
+        $this->fontStyle = $draw;
+        return $this;
+    }
 }

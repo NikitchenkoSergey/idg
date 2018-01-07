@@ -261,7 +261,7 @@ class Idg
         // removing multi spaces
         $content = preg_replace("/\s+/",' ', $content);
         $element->content = $content;
-        $element->align = $align;
+        $element->setAlign($align);
 
         // text style
         $textDraw = new ImagickDraw();
@@ -272,24 +272,20 @@ class Idg
         $textDraw->setTextAlignment($align);
         $textDraw->setFont($font);
 
-        $element->fontStyle = $textDraw;
+        $element->setFontStyle($textDraw);
 
         return $this->addElement($element);
     }
 
     /**
      * Adding image
-     * @param int $top
-     * @param int $left
      * @param string $file
      * @param bool $fromBlob
      * @return Image
      */
-    public function image($top, $left, $file, $fromBlob = false)
+    public function image($file, $fromBlob = false)
     {
         $element = new Image();
-        $element->top = $top;
-        $element->left = $left;
         $element->file = $file;
         $element->fromBlob = $fromBlob;
         return $this->addElement($element);

@@ -24,7 +24,7 @@ $idg->beginDocument(20, 30, 40, 30);
 
         $idg->beginRow()->setTop(20);
         $idg->beginColumn(300);
-                $idg->image(0, 0, 'test_image.jpg');
+                $idg->image('test_image.jpg');
             $idg->beginBlock()->setLeft(20);
                 $idg->text('Figure 1. Dolore eu fugiat nulla pariatur.', $fontRobotoRegular, 14, '#555', Imagick::ALIGN_LEFT);
             $idg->endBlock();
@@ -50,18 +50,18 @@ $idg->beginDocument(20, 30, 40, 30);
     $idg->beginRow()->setTop(20);
         $idg->beginColumn(300);
             $idg->text('Text in column. Text in column. Text in column. ', $fontRobotoRegular, 18, 'black', Imagick::ALIGN_LEFT);
-            $idg->image(0, 0, 'test_image.jpg');
+            $idg->image('test_image.jpg');
         $idg->endColumn();
         $idg->beginColumn(300);
             $idg->text('The bear column', $fontRobotoBold, 22, '#000', Imagick::ALIGN_CENTER);
-            $idg->image(0, 20, 'test_image.jpg');
+            $idg->image('test_image.jpg')->setLeft(20);
             $idg->text('Text in column. Text in column. Text in column. Text in column.
              Text in column. Text in column. Text in column. Text in column. Text in column.', $fontRobotoRegular, 18, 'black', Imagick::ALIGN_CENTER);
         $idg->endColumn();
         $idg->beginColumn(300);
             $idg->text('Align center. Text in column. Text in column. Text in column. 
             Text in column. Text in column. Text in column. ', $fontRobotoRegular, 18, 'black', Imagick::ALIGN_LEFT);
-            $idg->image(0, 0, 'test_image.jpg');
+            $idg->image('test_image.jpg');
         $idg->endColumn();
     $idg->endRow();
 
@@ -86,7 +86,7 @@ $idg->beginDocument(20, 30, 40, 30);
         $idg->beginBlock()->setLeft(50);
         $idg->text('Figure 2. Dolore eu fugiat pariatur.', $fontRobotoRegular, 14, '#555', Imagick::ALIGN_LEFT);
         $idg->endBlock();
-            $idg->image(0, 30, 'test_image.jpg');
+            $idg->image('test_image.jpg')->setLeft(30);
         $idg->endColumn();
     $idg->endRow();
 

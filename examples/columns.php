@@ -8,7 +8,7 @@ $idg = new \Idg\Idg(1000, 3000, null, new ImagickPixel('#fff'));
 $idg->beginDocument(40, 30, 40, 30);
     $idg->beginRow()->setPaddingBottom(30);
         $idg->beginColumn(300);
-        $idg->image(0, 0, 'test_image.jpg');
+        $idg->image('test_image.jpg');
         $idg->beginBlock()->setLeft(20);
         $idg->text('Figure 1. Dolore eu fugiat nulla pariatur.', $fontRegular, 14, '#555', Imagick::ALIGN_LEFT);
         $idg->endBlock();
