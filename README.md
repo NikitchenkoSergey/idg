@@ -56,7 +56,7 @@ print $idg->getImageBlob();
 
 # Methods
 ## Idg
-| Method | | Return | Description |
+| Method | Return | Description |
 | ---| --- | --- |
 | `Idg($width, $maxHeight, $minHeight = null, $background = null, $type = 'png')` | `Idg` | Creating new generator |
 | `$idg->beginDocument($marginTop = 0, $marginLeft = 0, $marginBottom = 0, $marginRight = 0)` | Document | Begin Document. It required. |
@@ -79,7 +79,7 @@ print $idg->getImageBlob();
 | `$idg->endElement()` | | End custom element. |
 
 ## Element
-| Method | | Return | Description |
+| Method | Return | Description |
 | ---| --- | --- |
 | `Element()` | `Element` | Creating new element |
 | `$element->setTop($value)` | | Setting top |
@@ -88,7 +88,7 @@ print $idg->getImageBlob();
 | `$element->setPaddingBottom($value)` | | Setting padding bottom |
 | `$element->setStaticHeight($value)` | | Setting static height |
 | `$element->getParent()` | `Element|null` | Get parent element |
-| `$element->getIdg()` | `Igd` | Get igd |
+| `$element->getIdg()` | `Igd` | Get Igd object |
 | `$element->getWidth()` | `int` | Get width or parents width |
 | `$element->getLeft()` | `int` | Get left |
 | `$element->getTop()` | `int` | Get top |
