@@ -36,6 +36,8 @@ $customBlock = new GreenBlock();
 $idg = new \Idg\Idg(1000, 3000);
 
 $idg->beginDocument(20, 30, 60, 30);
+$idg->text('Custom element',
+    $fontRobotoRegular, 26, '#000', Imagick::ALIGN_CENTER);
     $idg->beginElement($customBlock)->setTop(20)->setPaddingBottom(25);
         $idg->beginBlock()->setTop(10)->setLeft(10);
             $idg->text('Lorem ipsum dolor sit amet. Ut enim ad minim veniam, quis 
@@ -45,6 +47,37 @@ $idg->beginDocument(20, 30, 60, 30);
                 $fontRobotoRegular, 26, '#000', Imagick::ALIGN_LEFT);
         $idg->endBlock();
     $idg->endElement();
+
+    // second way
+    $idg->beginBlock()->setStaticHeight(20);
+    $idg->endBlock();
+
+    $idg->text('Second way by afterRender Closure',
+    $fontRobotoRegular, 26, '#000', Imagick::ALIGN_CENTER);
+
+    $idg->beginBlock()->setTop(20)->setPaddingBottom(25)->setAfterRender(function (\Idg\Elements\Element $element) {
+        $draw = new \ImagickDraw();
+        $strokeColor = new \ImagickPixel('green');
+        $fillColor = new \ImagickPixel('green');
+
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
+        $draw->setFillOpacity(0.1);
+        $draw->setStrokeOpacity(1);
+        $draw->setStrokeWidth(2);
+
+        $draw->rectangle($element->getLeftOffset(), $element->getTopOffset(), $element->getLeftOffset() + $element->getWidth(), $element->getTopOffset() + $element->getHeight());
+        $element->getIdg()->getCanvas()->drawImage($draw);
+    });
+        $idg->beginBlock()->setTop(10)->setLeft(10);
+            $idg->text('Lorem ipsum dolor sit amet. Ut enim ad minim veniam, quis 
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Duis aute irure dolor in reprehenderit in voluptate 
+                                            velit esse cillum dolore eu fugiat nulla pariatur. ',
+                $fontRobotoRegular, 26, '#000', Imagick::ALIGN_LEFT);
+        $idg->endBlock();
+    $idg->endElement();
+
 $idg->endDocument();
 
 $idg->compose();

@@ -53,6 +53,7 @@ print $idg->getImageBlob();
 <p align="center">
        <img src="http://nikitchenko.ru/idg/example2.png" alt="Example" />
 </p>
+see: examples/columns.php
 
 # Methods
 ## Idg
@@ -87,7 +88,7 @@ print $idg->getImageBlob();
 | `$element->setWidth($value)` | `Element` | Setting width |
 | `$element->setPaddingBottom($value)` | `Element` | Setting padding bottom |
 | `$element->setStaticHeight($value)` | `Element` | Setting static height |
-| `$element->setAfterRender($closure)` | `Element` | Setting after render function |
+| `$element->setAfterRender($closure)` | `Element` | Setting after render function, see: examples/custom_element.php |
 | `$element->getParent()` | `Element or null` | Get parent element |
 | `$element->getIdg()` | `Igd` | Get Igd object |
 | `$element->getWidth()` | `int` | Get width or parents width |

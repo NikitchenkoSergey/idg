@@ -56,6 +56,11 @@ class Element
     public $paddingBottom;
 
     /**
+     * @var \Closure
+     */
+    public $afterRender;
+
+    /**
      * @param Element $element
      */
     public function setParent(Element $element)
@@ -300,7 +305,10 @@ class Element
      */
     public function afterRender()
     {
-
+        if (is_object($this->afterRender) && $this->afterRender instanceof \Closure) {
+            $closure = $this->afterRender;
+            $closure($this);
+        }
     }
 
     /**
@@ -355,6 +363,17 @@ class Element
     public function setStaticHeight($value)
     {
         $this->staticHeight = $value;
+        return $this;
+    }
+
+    /**
+     * Setting after render function
+     * @param \Closure $closure
+     * @return $this
+     */
+    public function setAfterRender(\Closure $closure)
+    {
+        $this->afterRender = $closure;
         return $this;
     }
 }
