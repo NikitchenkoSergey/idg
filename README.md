@@ -60,11 +60,11 @@ see: examples/columns.php
 | Method | Return | Description |
 | ---| --- | --- |
 | `Idg($width, $maxHeight, $minHeight = null, $background = null, $type = 'png')` | `Idg` | Creating new generator |
-| `$idg->beginDocument($marginTop = 0, $marginLeft = 0, $marginBottom = 0, $marginRight = 0)` | Document | Begin Document. It required. |
+| `$idg->beginDocument($marginTop = 0, $marginLeft = 0, $marginBottom = 0, $marginRight = 0)` | `Document` | Begin Document. It required. |
 | `$idg->endDocument()` | | End document. |
-| `$idg->beginBlock()` | Block | Begin relative block. |
+| `$idg->beginBlock()` | `Block` | Begin relative block. |
 | `$idg->endBlock()` | | End block. |
-| `$idg->beginAbsoluteBlock($top, $left)` | AbsoluteBlock | Begin absolute block. |
+| `$idg->beginAbsoluteBlock($top, $left)` | `AbsoluteBlock` | Begin absolute block. |
 | `$idg->endAbsoluteBlock()` | | End absolute block. |
 | `$idg->beginRow()` | `Row` | Begin row. |
 | `$idg->endRow()` | | End row. |
