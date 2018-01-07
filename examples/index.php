@@ -9,7 +9,7 @@ $fontRobotoBold = 'RobotoCondensed-Regular.ttf';
 
 $idg = new \Idg\Idg(1000, 3000, null, new ImagickPixel('#fff'));
 
-$idg->beginDocument(20, 30, 40, 30);
+$idg->beginDocument(20, 30, 20, 30);
 
     $idg->text('Lorem ipsum dolor sit amet', $fontRobotoBold, 26, '#000', Imagick::ALIGN_LEFT);
 

@@ -23,3 +23,5 @@ phpunit.phar
 composer.phar
 
 /vendor
+
+composer.lock

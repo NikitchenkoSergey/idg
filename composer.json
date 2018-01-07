@@ -14,6 +14,9 @@
     "require": {
         "php": ">=5.5.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
     "autoload": {
         "psr-4": {
             "Idg\\": "src/"

@@ -6,7 +6,7 @@ $fontRegular = 'RobotoCondensed-Regular.ttf';
 
 $idg = new \Idg\Idg(1000, 3000, null, new ImagickPixel('#fff'));
 $idg->beginDocument(40, 30, 40, 30);
-    $idg->beginRow()->setPaddingBottom(30);
+    $idg->beginRow();
         $idg->beginColumn(300);
         $idg->image('test_image.jpg');
         $idg->beginBlock()->setLeft(20);
