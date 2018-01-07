@@ -3,11 +3,13 @@ php:
   - '5.5'
   - '5.6'
   - '7.0'
+  - '7.1'
+  - '7.2'
   - nightly
 install:
   - printf "\n" | pecl install imagick
   - composer self-update
-  - composer install --ignore-platform-reqs
+  - composer install --dev
 script:
     vendor/bin/phpunit
 notifications:
