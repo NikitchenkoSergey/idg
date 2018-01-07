@@ -82,12 +82,13 @@ print $idg->getImageBlob();
 | Method | Return | Description |
 | ---| --- | --- |
 | `Element()` | `Element` | Creating new element |
-| `$element->setTop($value)` | | Setting top |
-| `$element->setLeft($value)` | | Setting left |
-| `$element->setWidth($value)` | | Setting width |
-| `$element->setPaddingBottom($value)` | | Setting padding bottom |
-| `$element->setStaticHeight($value)` | | Setting static height |
-| `$element->getParent()` | `Element|null` | Get parent element |
+| `$element->setTop($value)` | `Element` | Setting top |
+| `$element->setLeft($value)` | `Element` | Setting left |
+| `$element->setWidth($value)` | `Element` | Setting width |
+| `$element->setPaddingBottom($value)` | `Element` | Setting padding bottom |
+| `$element->setStaticHeight($value)` | `Element` | Setting static height |
+| `$element->setAfterRender($closure)` | `Element` | Setting after render function |
+| `$element->getParent()` | `Element or null` | Get parent element |
 | `$element->getIdg()` | `Igd` | Get Igd object |
 | `$element->getWidth()` | `int` | Get width or parents width |
 | `$element->getLeft()` | `int` | Get left |
