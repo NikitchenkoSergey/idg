@@ -6,6 +6,7 @@ Fast and simple document image generator. This is a wrapper over Imagick with wh
        <img src="http://nikitchenko.ru/idg/example1.png" width="550" alt="Example" />
 </p>
 See: examples/index.php
+
 ### Features
 * Any elements count and structure
 * Possibility to create custom elements
