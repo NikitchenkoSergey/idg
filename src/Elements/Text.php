@@ -30,17 +30,33 @@ class Text extends Element
      */
     public $align = Imagick::ALIGN_LEFT;
 
+    /**
+     * @var string
+     */
+    public $font;
+
+    /**
+     * @var int
+     */
+    public $fontSize = 16;
+
+    /**
+     * @var string
+     */
+    public $textColor = 'black';
+
 
     /**
      * Render text
      */
     public function render()
     {
+        $fontStyle = $this->getDraw();
         $lines = $this->getTextRows();
 
         $textHeight = 0;
         foreach ($lines as $line) {
-            $draw = clone $this->fontStyle;
+            $draw = clone $fontStyle;
             $metrics = $this->getIdg()->getCanvas()->queryFontMetrics($draw, $line, false);
             $textLineHeight = $metrics['textHeight'];
             $textLineWidth = $metrics['textWidth'];
@@ -56,6 +72,29 @@ class Text extends Element
         $this->increaseHeight($textHeight);
     }
 
+    /**
+     * Getting font style
+     * @return ImagickDraw
+     */
+    protected function getDraw()
+    {
+        if ($this->fontStyle instanceof \ImagickDraw) {
+            return $this->fontStyle;
+        }
+
+        $textDraw = new ImagickDraw();
+        $textDraw->setFillColor(new \ImagickPixel($this->textColor));
+        $textDraw->setFontSize($this->fontSize);
+        $textDraw->setStrokeAntialias(true);
+        $textDraw->setTextAntialias(true);
+        $textDraw->setTextAlignment($this->align);
+        if ($this->font) {
+            $textDraw->setFont($this->font);
+        }
+
+        return $textDraw;
+    }
+
 
     /**
      * Explode text by lines for width
@@ -63,6 +102,7 @@ class Text extends Element
      */
     protected function getTextRows()
     {
+        $fontStyle = $this->getDraw();
         $words = explode(' ', $this->content);
         $lines = array();
         $i = 0;
@@ -81,7 +121,7 @@ class Text extends Element
                 }
 
                 $linePreview = $line . ' ' . $words[$i];
-                $metrics = $this->getIdg()->getCanvas()->queryFontMetrics($this->fontStyle, $linePreview);
+                $metrics = $this->getIdg()->getCanvas()->queryFontMetrics($fontStyle, $linePreview);
 
             } while($metrics['textWidth'] <= $this->getWidth());
 
@@ -118,6 +158,36 @@ class Text extends Element
     public function setFontStyle(\ImagickDraw $draw)
     {
         $this->fontStyle = $draw;
+        return $this;
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setFontSize($value)
+    {
+        $this->fontSize = $value;
+        return $this;
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setFont($value)
+    {
+        $this->font = $value;
+        return $this;
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setTextColor($value)
+    {
+        $this->textColor = $value;
         return $this;
     }
 }

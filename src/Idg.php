@@ -247,13 +247,9 @@ class Idg
     /**
      * Adding text
      * @param string $content
-     * @param string $font
-     * @param int $fontSize
-     * @param string $textColor
-     * @param int $align
      * @return Text
      */
-    public function text($content, $font, $fontSize = 16, $textColor = 'black', $align = Imagick::ALIGN_LEFT)
+    public function text($content)
     {
         $element = new Text();
         // removing \n\r
@@ -261,18 +257,6 @@ class Idg
         // removing multi spaces
         $content = preg_replace("/\s+/",' ', $content);
         $element->content = $content;
-        $element->setAlign($align);
-
-        // text style
-        $textDraw = new ImagickDraw();
-        $textDraw->setFillColor(new ImagickPixel($textColor));
-        $textDraw->setFontSize($fontSize);
-        $textDraw->setStrokeAntialias(true);
-        $textDraw->setTextAntialias(true);
-        $textDraw->setTextAlignment($align);
-        $textDraw->setFont($font);
-
-        $element->setFontStyle($textDraw);
 
         return $this->addElement($element);
     }

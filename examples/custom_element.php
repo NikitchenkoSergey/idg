@@ -36,15 +36,13 @@ $customBlock = new GreenBlock();
 $idg = new \Idg\Idg(1000, 3000);
 
 $idg->beginDocument(20, 30, 30, 30);
-$idg->text('Custom element',
-    $fontRobotoRegular, 26, '#000', Imagick::ALIGN_CENTER);
+$idg->text('Custom element')->setAlign(Imagick::ALIGN_CENTER)->setFontSize(26)->setFont($fontRobotoRegular);
     $idg->beginElement($customBlock)->setTop(20)->setPaddingBottom(25);
         $idg->beginBlock()->setTop(10)->setLeft(10);
             $idg->text('Lorem ipsum dolor sit amet. Ut enim ad minim veniam, quis 
             nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
             Duis aute irure dolor in reprehenderit in voluptate 
-                                velit esse cillum dolore eu fugiat nulla pariatur. ',
-                $fontRobotoRegular, 26, '#000', Imagick::ALIGN_LEFT);
+                                velit esse cillum dolore eu fugiat nulla pariatur. ')->setFont($fontRobotoRegular)->setFontSize(26);
         $idg->endBlock();
     $idg->endElement();
 
@@ -52,8 +50,8 @@ $idg->text('Custom element',
     $idg->beginBlock()->setStaticHeight(20);
     $idg->endBlock();
 
-    $idg->text('Second way by afterRender Closure',
-    $fontRobotoRegular, 26, '#000', Imagick::ALIGN_CENTER);
+    $idg->text('Second way by afterRender Closure')->setFont($fontRobotoRegular)
+        ->setFontSize(26)->setAlign(Imagick::ALIGN_CENTER);
 
     $idg->beginBlock()->setTop(20)->setPaddingBottom(25)->setAfterRender(function (\Idg\Elements\Element $element) {
         $draw = new \ImagickDraw();
@@ -73,8 +71,7 @@ $idg->text('Custom element',
             $idg->text('Lorem ipsum dolor sit amet. Ut enim ad minim veniam, quis 
                         nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
                         Duis aute irure dolor in reprehenderit in voluptate 
-                                            velit esse cillum dolore eu fugiat nulla pariatur. ',
-                $fontRobotoRegular, 26, '#000', Imagick::ALIGN_LEFT);
+                                            velit esse cillum dolore eu fugiat nulla pariatur. ')->setFont($fontRobotoRegular)->setFontSize(26);
         $idg->endBlock();
     $idg->endElement();
 

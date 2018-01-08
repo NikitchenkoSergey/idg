@@ -11,7 +11,7 @@ $idg = new \Idg\Idg(1000, 3000, null, new ImagickPixel('#fff'));
 
 $idg->beginDocument(20, 30, 20, 30);
 
-    $idg->text('Lorem ipsum dolor sit amet', $fontRobotoBold, 26, '#000', Imagick::ALIGN_LEFT);
+    $idg->text('Lorem ipsum dolor sit amet')->setFont($fontRobotoBold)->setFontSize(26);
 
     $idg->beginBlock()->setTop(20)->setWidth(960);
         $idg->text('Lorem ipsum dolor sit amet, 
@@ -19,14 +19,15 @@ $idg->beginDocument(20, 30, 20, 30);
          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
          Duis aute irure dolor in reprehenderit in voluptate 
         velit esse cillum dolore eu fugiat nulla pariatur. 
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-            $fontRobotoRegular);
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        )->setFont($fontRobotoRegular);
 
         $idg->beginRow()->setTop(20);
         $idg->beginColumn(300);
                 $idg->image('test_image.jpg');
             $idg->beginBlock()->setLeft(20);
-                $idg->text('Figure 1. Dolore eu fugiat nulla pariatur.', $fontRobotoRegular, 14, '#555', Imagick::ALIGN_LEFT);
+                $idg->text('Figure 1. Dolore eu fugiat nulla pariatur.')
+                ->setFont($fontRobotoRegular)->setFontSize(14)->setTextColor('#555');
             $idg->endBlock();
         $idg->endColumn();
         $idg->beginColumn(600);
@@ -36,38 +37,40 @@ $idg->beginDocument(20, 30, 20, 30);
                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
                  Duis aute irure dolor in reprehenderit in voluptate 
                 velit esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                    $fontRobotoRegular);
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+                ->setFont($fontRobotoRegular);
             $idg->endBlock();
         $idg->endColumn();
         $idg->endRow();
     $idg->endBlock();
 
     $idg->beginBlock()->setTop(40);
-        $idg->text('Dolore eu fugiat nulla pariatur.', $fontRobotoBold, 26, '#000', Imagick::ALIGN_LEFT);
+        $idg->text('Dolore eu fugiat nulla pariatur.')
+        ->setFontSize(26)->setFont($fontRobotoBold);
     $idg->endBlock();
 
     $idg->beginRow()->setTop(20);
         $idg->beginColumn(300);
-            $idg->text('Text in column. Text in column. Text in column. ', $fontRobotoRegular, 18, 'black', Imagick::ALIGN_LEFT);
+            $idg->text('Text in column. Text in column. Text in column. ')->setFont($fontRobotoRegular)->setFontSize(18);
             $idg->image('test_image.jpg');
         $idg->endColumn();
         $idg->beginColumn(300);
-            $idg->text('The bear column', $fontRobotoBold, 22, '#000', Imagick::ALIGN_CENTER);
+            $idg->text('The bear column')->setFont($fontRobotoBold)->setFontSize(22)->setAlign(Imagick::ALIGN_CENTER);
             $idg->image('test_image.jpg')->setLeft(20);
-            $idg->text('Text in column. Text in column. Text in column. Text in column.
-             Text in column. Text in column. Text in column. Text in column. Text in column.', $fontRobotoRegular, 18, 'black', Imagick::ALIGN_CENTER);
+            $idg->text('Align center. Text in column. Text in column. Text in column. Text in column.
+             Text in column. Text in column. Text in column. Text in column. Text in column.')
+            ->setFont($fontRobotoRegular)->setFontSize(18)->setAlign(Imagick::ALIGN_CENTER);
         $idg->endColumn();
         $idg->beginColumn(300);
-            $idg->text('Align center. Text in column. Text in column. Text in column. 
-            Text in column. Text in column. Text in column. ', $fontRobotoRegular, 18, 'black', Imagick::ALIGN_LEFT);
+            $idg->text('Text in column. Text in column. Text in column. 
+            Text in column. Text in column. Text in column. ')->setFont($fontRobotoRegular)->setFontSize(18);
             $idg->image('test_image.jpg');
         $idg->endColumn();
     $idg->endRow();
 
 
     $idg->beginBlock()->setTop(40);
-        $idg->text('Lorem ipsum dolor sit amet', $fontRobotoBold, 26, '#000', Imagick::ALIGN_LEFT);
+        $idg->text('Lorem ipsum dolor sit amet')->setFont($fontRobotoBold)->setFontSize(26);
     $idg->endBlock();
 
     $idg->beginRow();
@@ -78,20 +81,22 @@ $idg->beginDocument(20, 30, 20, 30);
                                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
                                  ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
                                 velit esse cillum dolore eu fugiat nulla pariatur. 
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                    $fontRobotoRegular, 16, 'black', Imagick::ALIGN_RIGHT);
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+                    ->setFont($fontRobotoRegular)->setAlign(Imagick::ALIGN_RIGHT);
             $idg->endBlock();
         $idg->endColumn();
         $idg->beginColumn(300);
         $idg->beginBlock()->setLeft(50);
-        $idg->text('Figure 2. Dolore eu fugiat pariatur.', $fontRobotoRegular, 14, '#555', Imagick::ALIGN_LEFT);
+        $idg->text('Figure 2. Dolore eu fugiat pariatur.')
+        ->setFont($fontRobotoRegular)->setFontSize(14)->setTextColor('#555');
         $idg->endBlock();
             $idg->image('test_image.jpg')->setLeft(30);
         $idg->endColumn();
     $idg->endRow();
 
 $idg->beginAbsoluteBlock(300, 80)->setWidth(170);
-    $idg->text('Absolute block on bear', $fontRobotoBold, 28, 'green', Imagick::ALIGN_CENTER);
+    $idg->text('Absolute block on bear')
+    ->setFont($fontRobotoBold)->setFontSize(28)->setTextColor('green')->setAlign(Imagick::ALIGN_CENTER);
 $idg->endAbsoluteBlock();
 
 $idg->endDocument();

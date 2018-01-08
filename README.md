@@ -34,14 +34,16 @@ $idg->beginDocument(40, 30, 40, 30);
         $idg->beginColumn(300);
             $idg->image('test_image.jpg');
             $idg->beginBlock()->setLeft(20);
-                $idg->text('Figure 1. Dolore eu fugiat nulla pariatur.', $fontRegular, 14, '#555', Imagick::ALIGN_LEFT);
+                $idg->text('Figure 1. Dolore eu fugiat nulla pariatur.')
+                ->setFont($fontRegular)->setFontSize(14)->setTextColor('#555');
             $idg->endBlock();
         $idg->endColumn();
         $idg->beginColumn(600);
                 $idg->text('Lorem ipsum dolor sit amet, 
                 consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
                 velit esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', $fontRegular);
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+                    ->setFont($fontRegular);
         $idg->endColumn();
         $idg->endRow();
 $idg->endDocument();
@@ -73,7 +75,7 @@ see: examples/columns.php
 | `$idg->beginColumn($width)` | `Column` | Begin column. |
 | `$idg->endColumn()` | | End column. |
 | `$idg->image($file, $fromBlob = false)` | `Image` | Adding image. |
-| `$idg->text($content, $font, $fontSize = 16, $textColor = 'black', $align = Imagick::ALIGN_LEFT)` | `Text` | Adding text. |
+| `$idg->text($content)` | `Text` | Adding text. |
 | `$idg->addElement(Element $element)` | `Element` | Add custom element. |
 | `$idg->getCanvas()` | `Imagick` | Return Imagick object. |
 | `$idg->compose()` | | Composing blocks. |
@@ -82,6 +84,7 @@ see: examples/columns.php
 | `$idg->endElement()` | | End custom element. |
 
 ## Element
+The element is responsible for its display
 | Method | Return | Description |
 | ---| --- | --- |
 | `Element()` | `Element` | Creating new element |
@@ -108,6 +111,17 @@ see: examples/columns.php
 | `$element->beforeRender()` | | Method will call before render document |
 | `$element->render()` | | Method will call on render document |
 | `$element->afterRender()` | | Method will call after render document |
+
+### Text (extends Element)
+| Method | Return | Description |
+| ---| --- | --- |
+| `$element->setAlign($value)` | `Element` | Setting align |
+| `$element->setAngle($value)` | `Element` | Setting angle of line |
+| `$element->setFontSize($value)` | `Element` | Setting font size, 16 default |
+| `$element->setFont($value)` | `Element` | Setting font family |
+| `$element->setTextColor($value)` | `Element` | Setting text color, black default |
+| `$element->setFontStyle(\ImagickDraw $draw)` | `Element` | Setting style, it override all attributes |
+
 
 ### Custom elements
 <p align="center">
