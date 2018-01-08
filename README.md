@@ -1,4 +1,4 @@
-# Image document generator (IDG)
+# Document image generator
 [![Build Status](https://travis-ci.org/NikitchenkoSergey/idg.svg?branch=master)](https://travis-ci.org/NikitchenkoSergey/idg)
 
 Fast and simple document image generator. This is a wrapper over Imagick with which you can create such images:
