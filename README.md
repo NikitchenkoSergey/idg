@@ -84,7 +84,8 @@ see: examples/columns.php
 | `$idg->endElement()` | | End custom element. |
 
 ## Element
-The element is responsible for its display
+The element is responsible for its display 
+
 | Method | Return | Description |
 | ---| --- | --- |
 | `Element()` | `Element` | Creating new element |
@@ -111,6 +112,7 @@ The element is responsible for its display
 | `$element->beforeRender()` | | Method will call before render document |
 | `$element->render()` | | Method will call on render document |
 | `$element->afterRender()` | | Method will call after render document |
+
 
 ### Text (extends Element)
 | Method | Return | Description |
