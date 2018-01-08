@@ -2,9 +2,9 @@
 use Idg\Exceptions\StructureException;
 /**
  * Tables test
- * Class TablesTest
+ * Class TableTest
  */
-class TablesTest  extends \PHPUnit\Framework\TestCase
+class TableTest  extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return \Idg\Idg

@@ -36,6 +36,16 @@ class StructureValidationTest  extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * Test empty document
+     */
+    public function testEmptyDocument()
+    {
+        $idg = $this->getIdg();
+        $this->expectException(StructureException::class);
+        $idg->compose();
+    }
+
+    /**
      * Test column in row
      */
     public function testColumn()

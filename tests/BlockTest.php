@@ -1,10 +1,10 @@
 <?php
 use Idg\Exceptions\StructureException;
 /**
- * Blocks test
- * Class BlocksTest
+ * Block test
+ * Class BlockTest
  */
-class BlocksTest  extends \PHPUnit\Framework\TestCase
+class BlockTest  extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return \Idg\Idg
