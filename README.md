@@ -1,5 +1,7 @@
 # Document image generator
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg)](https://php.net/)
 [![Build Status](https://travis-ci.org/NikitchenkoSergey/idg.svg?branch=master)](https://travis-ci.org/NikitchenkoSergey/idg)
+[![License](https://poser.pugx.org/idg/idg/license.svg)](https://packagist.org/packages/idg/idg)
 
 Fast and simple document image generator. This is a wrapper over Imagick with which you can create such images:
 <p align="center">
@@ -117,6 +119,7 @@ The element is responsible for its display
 
 #### Padding
 | Method | Return | Description |
+| ---| --- | --- |
 | `$element->setPaddingTop($value)` | `Element` | Setting padding top |
 | `$element->setPaddingLeft($value)` | `Element` | Setting padding left |
 | `$element->setPaddingRight($value)` | `Element` | Setting padding right |
@@ -125,17 +128,21 @@ The element is responsible for its display
 
 #### Margin
 | Method | Return | Description |
+| ---| --- | --- |
 | `$element->setMarginTop($value)` | `Element` | Setting margin top |
 | `$element->setMarginLeft($value)` | `Element` | Setting margin left |
 | `$element->setMarginRight($value)` | `Element` | Setting margin right |
 | `$element->setMarginBottom($value)` | `Element` | Setting margin bottom |
 | `$element->setMargin($top, $right, $bottom, $left)` | `Element` | Setting margin |
 
+
 #### Border
 | Method | Return | Description |
+| ---| --- | --- |
 | `$element->setBorderColor($value)` | `Element` | Setting border color |
 | `$element->setBorderWidth($value)` | `Element` | Setting border width |
 | `$element->setBorder($width, $color)` | `Element` | Setting border |
+
 
 ### Text (extends Element)
 | Method | Return | Description |
