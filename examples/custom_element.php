@@ -35,7 +35,7 @@ class GreenBlock extends \Idg\Elements\Element
 $customBlock = new GreenBlock();
 $idg = new \Idg\Idg(1000, 3000);
 
-$idg->beginDocument(20, 30, 30, 30);
+$idg->beginDocument(20, 20, 40, 20);
 $idg->text('Custom element')->setAlign(Imagick::ALIGN_CENTER)->setFontSize(26)->setFont($fontRobotoRegular);
     $idg->beginElement($customBlock)->setTop(20)->setPaddingBottom(25);
         $idg->beginBlock()->setTop(10)->setLeft(10);

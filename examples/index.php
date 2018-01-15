@@ -94,7 +94,7 @@ $idg->beginDocument(20, 30, 20, 30);
         $idg->endColumn();
     $idg->endRow();
 
-$idg->beginAbsoluteBlock(300, 80)->setWidth(170);
+$idg->beginAbsoluteBlock(300, 80)->setWidth(250);
     $idg->text('Absolute block on bear')
     ->setFont($fontRobotoBold)->setFontSize(28)->setTextColor('green')->setAlign(Imagick::ALIGN_CENTER);
 $idg->endAbsoluteBlock();

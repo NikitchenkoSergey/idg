@@ -35,7 +35,10 @@ class Image extends Element
         $imageWidth = $image->getImageWidth();
         $imageHeight = $image->getImageHeight();
 
-        $this->getIdg()->getCanvas()->compositeImage($image, Imagick::COMPOSITE_OVER, $this->getLeftOffset(), $this->getTopOffset());
+        $this->getIdg()->getCanvas()->compositeImage($image, Imagick::COMPOSITE_OVER,
+            $this->getLeftOffset() + $this->paddingLeft,
+            $this->getTopOffset() + $this->paddingTop
+        );
         $this->increaseHeight($imageHeight);
     }
 }

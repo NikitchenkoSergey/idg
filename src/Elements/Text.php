@@ -67,6 +67,7 @@ class Text extends Element
                 $leftOffset = $this->getLeftOffset() + ($this->getWidth() / 2);
             }
             $textHeight += $textLineHeight;
+
             $this->getIdg()->getCanvas()->annotateImage($draw, $leftOffset, $this->getTopOffset() + $textHeight, $this->angle, $line);
         }
         $this->increaseHeight($textHeight);

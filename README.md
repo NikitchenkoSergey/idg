@@ -15,7 +15,7 @@ See: examples/index.php
 * Faster and more optimal that html->pdf->image
 
 # Requirements
-PHP 5.5+, `Imagick` extension.
+PHP 5.6+, `Imagick` extension.
 
 # Installation
 composer require idg/idg
@@ -45,7 +45,7 @@ $idg->beginDocument(40, 30, 40, 30);
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
                     ->setFont($fontRegular);
         $idg->endColumn();
-        $idg->endRow();
+ $idg->endRow();
 $idg->endDocument();
 $idg->compose();
 
@@ -86,13 +86,14 @@ see: examples/columns.php
 ## Element
 The element is responsible for its display 
 
+### Main methods
+
 | Method | Return | Description |
 | ---| --- | --- |
 | `Element()` | `Element` | Creating new element |
 | `$element->setTop($value)` | `Element` | Setting top |
 | `$element->setLeft($value)` | `Element` | Setting left |
 | `$element->setWidth($value)` | `Element` | Setting width |
-| `$element->setPaddingBottom($value)` | `Element` | Setting padding bottom |
 | `$element->setStaticHeight($value)` | `Element` | Setting static height |
 | `$element->setAfterRender($closure)` | `Element` | Setting after render function, see: examples/custom_element.php |
 | `$element->getParent()` | `Element or null` | Get parent element |
@@ -108,11 +109,33 @@ The element is responsible for its display
 | `$element->getSiblings()` | `Element[]` | List of siblings with current element |
 | `$element->getPrevSibling()` | `Element` | Prev sibling |
 | `$element->getPrevSiblings()` | `Element[]` | List of prev siblings |
-| `$element->getPrevSibling()` | `Element` | Prev sibling |
 | `$element->beforeRender()` | | Method will call before render document |
 | `$element->render()` | | Method will call on render document |
 | `$element->afterRender()` | | Method will call after render document |
 
+### Element properties
+
+#### Padding
+| Method | Return | Description |
+| `$element->setPaddingTop($value)` | `Element` | Setting padding top |
+| `$element->setPaddingLeft($value)` | `Element` | Setting padding left |
+| `$element->setPaddingRight($value)` | `Element` | Setting padding right |
+| `$element->setPaddingBottom($value)` | `Element` | Setting padding bottom |
+| `$element->setPadding($top, $right, $bottom, $left)` | `Element` | Setting padding |
+
+#### Margin
+| Method | Return | Description |
+| `$element->setMarginTop($value)` | `Element` | Setting margin top |
+| `$element->setMarginLeft($value)` | `Element` | Setting margin left |
+| `$element->setMarginRight($value)` | `Element` | Setting margin right |
+| `$element->setMarginBottom($value)` | `Element` | Setting margin bottom |
+| `$element->setMargin($top, $right, $bottom, $left)` | `Element` | Setting margin |
+
+#### Border
+| Method | Return | Description |
+| `$element->setBorderColor($value)` | `Element` | Setting border color |
+| `$element->setBorderWidth($value)` | `Element` | Setting border width |
+| `$element->setBorder($width, $color)` | `Element` | Setting border |
 
 ### Text (extends Element)
 | Method | Return | Description |
@@ -125,7 +148,13 @@ The element is responsible for its display
 | `$element->setFontStyle(\ImagickDraw $draw)` | `Element` | Setting style, it override all attributes |
 
 
-### Custom elements
+### Padding, margin and border
+<p align="center">
+       <img src="http://nikitchenko.ru/idg/padding_margin.png" alt="Example" />
+</p>
+See: examples/padding_margin.php <br />
+
+## Custom elements
 <p align="center">
        <img src="http://nikitchenko.ru/idg/example3.png" alt="Example" />
 </p>

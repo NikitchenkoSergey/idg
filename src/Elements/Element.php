@@ -2,6 +2,9 @@
 
 namespace Idg\Elements;
 
+use Idg\Elements\Properties\Border;
+use Idg\Elements\Properties\Margin;
+use Idg\Elements\Properties\Padding;
 use Idg\Idg;
 
 /**
@@ -10,6 +13,13 @@ use Idg\Idg;
  */
 class Element
 {
+    /**
+     * Properties
+     */
+    use Padding;
+    use Margin;
+    use Border;
+
     /**
      * @var string
      */
@@ -49,11 +59,6 @@ class Element
      * @var integer
      */
     public $staticHeight;
-
-    /**
-     * @var integer
-     */
-    public $paddingBottom;
 
     /**
      * @var \Closure
@@ -101,7 +106,11 @@ class Element
         $result = $this->width;
         if (!$result && $this->parent) {
             $result = $this->parent->getWidth();
+            $result -= $this->parent->paddingLeft;
+            $result -= $this->parent->paddingRight;
         }
+
+        $result -= $this->getLeft() + $this->marginRight;
 
         return $result;
     }
@@ -111,7 +120,11 @@ class Element
      */
     public function getLeft()
     {
-        return $this->left ? $this->left : 0;
+        $result = $this->left ? $this->left : 0;
+        // margin
+        $result += $this->marginLeft;
+
+        return $result;
     }
 
     /**
@@ -123,6 +136,7 @@ class Element
         $result = $this->getLeft();
         if ($this->parent) {
             $result += $this->parent->getLeftOffset();
+            $result += $this->parent->paddingLeft;
         }
 
         return $result;
@@ -133,7 +147,11 @@ class Element
      */
     public function getTop()
     {
-        return $this->top ? $this->top : 0;
+        $result = $this->top ? $this->top : 0;
+        // margin
+        $result += $this->marginTop;
+
+        return $result;
     }
 
     /**
@@ -146,8 +164,10 @@ class Element
         if ($prevSibling) {
             $result += $prevSibling->getTopOffset();
             $result += $prevSibling->getHeight();
+            $result += $prevSibling->marginBottom;
         } elseif ($this->parent) {
             $result += $this->parent->getTopOffset();
+            $result += $this->parent->paddingTop;
         }
 
         return $result;
@@ -168,6 +188,8 @@ class Element
             }
         }
 
+        // padding
+        $height += $this->paddingTop;
         $height += $this->paddingBottom;
 
         return $height;
@@ -179,7 +201,7 @@ class Element
      */
     public function getOuterHeight()
     {
-        return $this->getTop() + $this->getHeight();
+        return $this->getTop() + $this->getHeight() + $this->marginBottom;
     }
 
     /**
@@ -305,6 +327,9 @@ class Element
      */
     public function afterRender()
     {
+        // render properties
+        $this->renderBorder();
+
         if (is_object($this->afterRender) && $this->afterRender instanceof \Closure) {
             $closure = $this->afterRender;
             $closure($this);
@@ -341,17 +366,6 @@ class Element
     public function setWidth($value)
     {
         $this->width = $value;
-        return $this;
-    }
-
-    /**
-     * Setting padding bottom
-     * @param int $value
-     * @return $this
-     */
-    public function setPaddingBottom($value)
-    {
-        $this->paddingBottom = $value;
         return $this;
     }
 
