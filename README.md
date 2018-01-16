@@ -11,6 +11,7 @@ See: examples/index.php
 
 ### Features
 * Any elements count and structure
+* `padding`, `margin`, `border` and `background` support
 * Possibility to create custom elements
 * Simple markup (like html)
 * Possibility to custom canvas by Imagick methods
