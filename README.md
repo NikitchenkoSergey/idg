@@ -5,7 +5,7 @@
 
 Fast and simple document image generator. This is a wrapper over Imagick with which you can create such images:
 <p align="center">
-       <img src="http://nikitchenko.ru/idg/example1.png" width="550" alt="Example" />
+       <img src="http://nikitchenko.ru/idg/index.png" width="550" alt="Example" />
 </p>
 See: examples/index.php
 
@@ -142,6 +142,14 @@ The element is responsible for its display
 | `$element->setBorderColor($value)` | `Element` | Setting border color |
 | `$element->setBorderWidth($value)` | `Element` | Setting border width |
 | `$element->setBorder($width, $color)` | `Element` | Setting border |
+| `$element->setBorderOpacity($value)` | `Element` | Setting border opacity |
+
+#### Background
+| Method | Return | Description |
+| ---| --- | --- |
+| `$element->setBackgroundColor($value)` | `Element` | Setting background color |
+| `$element->setBackgroundOpacity($value)` | `Element` | Setting background opacity |
+| `$element->setBackground($color, $opacity)` | `Element` | Setting background |
 
 
 ### Text (extends Element)
@@ -152,6 +160,7 @@ The element is responsible for its display
 | `$element->setFontSize($value)` | `Element` | Setting font size, 16 default |
 | `$element->setFont($value)` | `Element` | Setting font family |
 | `$element->setTextColor($value)` | `Element` | Setting text color, black default |
+| `$element->setDecoration($value)` | `Element` | Setting text decoration |
 | `$element->setFontStyle(\ImagickDraw $draw)` | `Element` | Setting style, it override all attributes |
 
 

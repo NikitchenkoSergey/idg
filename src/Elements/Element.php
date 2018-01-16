@@ -2,6 +2,7 @@
 
 namespace Idg\Elements;
 
+use Idg\Elements\Properties\Background;
 use Idg\Elements\Properties\Border;
 use Idg\Elements\Properties\Margin;
 use Idg\Elements\Properties\Padding;
@@ -19,6 +20,7 @@ class Element
     use Padding;
     use Margin;
     use Border;
+    use Background;
 
     /**
      * @var string
@@ -307,6 +309,7 @@ class Element
 
     /**
      * Before rendering
+     * set element size there
      */
     public function beforeRender()
     {
@@ -318,7 +321,8 @@ class Element
      */
     public function render()
     {
-
+        // render properties
+        $this->renderBackground();
     }
 
     /**
@@ -329,6 +333,7 @@ class Element
     {
         // render properties
         $this->renderBorder();
+
 
         if (is_object($this->afterRender) && $this->afterRender instanceof \Closure) {
             $closure = $this->afterRender;

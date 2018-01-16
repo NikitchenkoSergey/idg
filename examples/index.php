@@ -40,6 +40,13 @@ $idg->beginDocument(20, 30, 20, 30);
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
                 ->setFont($fontRobotoRegular);
             $idg->endBlock();
+
+        $idg->beginBlock()->setPadding(4, 10, 10, 10)->setBorder(2, '#500')->setBorderOpacity(0.9)->setMarginTop(20);
+        $idg->text('Text block with border. Lorem ipsum dolor sit amet, 
+                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                         Ut enim ad minim venia.')->setAlign(Imagick::ALIGN_CENTER)
+            ->setFont($fontRobotoRegular)->setTextColor('#500');
+        $idg->endBlock();
         $idg->endColumn();
         $idg->endRow();
     $idg->endBlock();
@@ -52,10 +59,11 @@ $idg->beginDocument(20, 30, 20, 30);
     $idg->beginRow()->setTop(20);
         $idg->beginColumn(300);
             $idg->text('Text in column. Text in column. Text in column. ')->setFont($fontRobotoRegular)->setFontSize(18);
-            $idg->image('test_image.jpg');
+            $idg->image('test_image.jpg')->setMarginTop(20)->setLeft(10);
         $idg->endColumn();
         $idg->beginColumn(300);
-            $idg->text('The bear column')->setFont($fontRobotoBold)->setFontSize(22)->setAlign(Imagick::ALIGN_CENTER);
+            $idg->text('The bear column')->setFont($fontRobotoBold)->setDecoration(Imagick::DECORATION_UNDERLINE)
+                ->setFontSize(22)->setAlign(Imagick::ALIGN_CENTER)->setMarginBottom(10);
             $idg->image('test_image.jpg')->setLeft(20);
             $idg->text('Align center. Text in column. Text in column. Text in column. Text in column.
              Text in column. Text in column. Text in column. Text in column. Text in column.')
@@ -63,19 +71,20 @@ $idg->beginDocument(20, 30, 20, 30);
         $idg->endColumn();
         $idg->beginColumn(300);
             $idg->text('Text in column. Text in column. Text in column. 
-            Text in column. Text in column. Text in column. ')->setFont($fontRobotoRegular)->setFontSize(18);
-            $idg->image('test_image.jpg');
+            Text in column. Text in column. Text in column. Text in column.
+             Text in column. Text in column.')->setFont($fontRobotoRegular)->setFontSize(18);
+            $idg->image('test_image.jpg')->setMarginTop(10);
         $idg->endColumn();
     $idg->endRow();
 
 
-    $idg->beginBlock()->setTop(40);
+    $idg->beginBlock()->setTop(40)->setMarginBottom(15);
         $idg->text('Lorem ipsum dolor sit amet')->setFont($fontRobotoBold)->setFontSize(26);
     $idg->endBlock();
 
     $idg->beginRow();
         $idg->beginColumn(600);
-            $idg->beginBlock()->setTop(30);
+            $idg->beginBlock()->setMarginTop(10);
                 $idg->text('Align right. Lorem ipsum dolor sit amet, 
                                 consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
                                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
@@ -94,9 +103,9 @@ $idg->beginDocument(20, 30, 20, 30);
         $idg->endColumn();
     $idg->endRow();
 
-$idg->beginAbsoluteBlock(300, 80)->setWidth(250);
-    $idg->text('Absolute block on bear')
-    ->setFont($fontRobotoBold)->setFontSize(28)->setTextColor('green')->setAlign(Imagick::ALIGN_CENTER);
+$idg->beginAbsoluteBlock(286, 73)->setWidth(270)->setBorder(2, 'white')->setPadding(0, 5, 15, 5)->setBackground('green', 0.5);
+    $idg->text('Absolute block on the bear')
+    ->setFont($fontRobotoBold)->setFontSize(28)->setTextColor('white')->setAlign(Imagick::ALIGN_CENTER);
 $idg->endAbsoluteBlock();
 
 $idg->endDocument();

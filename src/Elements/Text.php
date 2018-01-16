@@ -45,12 +45,40 @@ class Text extends Element
      */
     public $textColor = 'black';
 
+    /**
+     * @var int
+     */
+    public $decoration = Imagick::DECORATION_NO;
+
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeRender()
+    {
+        parent::beforeRender();
+
+        $fontStyle = $this->getDraw();
+        $lines = $this->getTextRows();
+
+        $textHeight = 0;
+        foreach ($lines as $line) {
+            $draw = clone $fontStyle;
+            $metrics = $this->getIdg()->getCanvas()->queryFontMetrics($draw, $line, false);
+            $textLineHeight = $metrics['textHeight'];
+            $textHeight += $textLineHeight;
+
+        }
+        $this->increaseHeight($textHeight);
+    }
 
     /**
      * Render text
      */
     public function render()
     {
+        parent::render();
+
         $fontStyle = $this->getDraw();
         $lines = $this->getTextRows();
 
@@ -70,7 +98,6 @@ class Text extends Element
 
             $this->getIdg()->getCanvas()->annotateImage($draw, $leftOffset, $this->getTopOffset() + $textHeight, $this->angle, $line);
         }
-        $this->increaseHeight($textHeight);
     }
 
     /**
@@ -89,6 +116,7 @@ class Text extends Element
         $textDraw->setStrokeAntialias(true);
         $textDraw->setTextAntialias(true);
         $textDraw->setTextAlignment($this->align);
+        $textDraw->setTextDecoration($this->decoration);
         if ($this->font) {
             $textDraw->setFont($this->font);
         }
@@ -139,6 +167,16 @@ class Text extends Element
     public function setAlign($value)
     {
         $this->align = $value;
+        return $this;
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setDecoration($value)
+    {
+        $this->decoration = $value;
         return $this;
     }
 

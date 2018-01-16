@@ -20,6 +20,11 @@ trait Border {
     public $borderColor = 'black';
 
     /**
+     * @var int
+     */
+    public $borderOpacity = 1;
+
+    /**
      * Setting border color
      * @param int $value
      * @return $this
@@ -38,6 +43,17 @@ trait Border {
     public function setBorderWidth($value)
     {
         $this->borderWidth = $value;
+        return $this;
+    }
+
+    /**
+     * Setting border opacity
+     * @param int $value
+     * @return $this
+     */
+    public function setBorderOpacity($value)
+    {
+        $this->borderOpacity = $value;
         return $this;
     }
 
@@ -74,7 +90,7 @@ trait Border {
         $draw->setStrokeColor($strokeColor);
         $draw->setFillColor($fillColor);
         $draw->setFillOpacity(0);
-        $draw->setStrokeOpacity(1);
+        $draw->setStrokeOpacity($this->borderOpacity);
         $draw->setStrokeWidth($this->borderWidth);
 
         $draw->rectangle($this->getLeftOffset(), $this->getTopOffset(), $this->getLeftOffset() + $this->getWidth(), $this->getTopOffset() + $this->getHeight());

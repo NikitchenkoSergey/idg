@@ -21,10 +21,17 @@ class Image extends Element
 
 
     /**
-     * Render image
+     * @var Imagick
      */
-    public function render()
+    protected $image;
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeRender()
     {
+        parent::beforeRender();
+
         $image = new Imagick();
         if ($this->fromBlob) {
             $image->readImageBlob($this->file);
@@ -35,10 +42,21 @@ class Image extends Element
         $imageWidth = $image->getImageWidth();
         $imageHeight = $image->getImageHeight();
 
-        $this->getIdg()->getCanvas()->compositeImage($image, Imagick::COMPOSITE_OVER,
+        $this->increaseHeight($imageHeight);
+
+        $this->image = $image;
+    }
+
+    /**
+     * Render image
+     */
+    public function render()
+    {
+        parent::render();
+
+        $this->getIdg()->getCanvas()->compositeImage($this->image, Imagick::COMPOSITE_OVER,
             $this->getLeftOffset() + $this->paddingLeft,
             $this->getTopOffset() + $this->paddingTop
         );
-        $this->increaseHeight($imageHeight);
     }
 }
