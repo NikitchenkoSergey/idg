@@ -5,7 +5,7 @@
 
 Fast and simple document image generator. This is a wrapper over Imagick with which you can create such images:
 <p align="center">
-       <img src="http://nikitchenko.ru/idg/index2.png" width="550" alt="Example" />
+       <img src="http://nikitchenko.ru/idg/index2.png" alt="Example" />
 </p>
 See: examples/index.php
 
@@ -154,6 +154,7 @@ The element is responsible for its display
 
 #### Rotation
 Rotation is inherit.
+
 | Method | Return | Description |
 | ---| --- | --- |
 | `$element->setRotation($value)` | `Element` | Setting rotation |
