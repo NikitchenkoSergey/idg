@@ -34,4 +34,21 @@ class AbsoluteBlock extends Element
     {
         return $this->top;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function getWidth()
+    {
+        $result = $this->width;
+        if (!$result && $this->parent) {
+            $result = $this->parent->getWidth();
+            $result -= $this->parent->paddingLeft;
+            $result -= $this->parent->paddingRight;
+        }
+
+        $result -= $this->marginLeft + $this->marginRight;
+
+        return $result;
+    }
 }

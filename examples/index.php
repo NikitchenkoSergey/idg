@@ -41,7 +41,8 @@ $idg->beginDocument(20, 30, 20, 30);
                 ->setFont($fontRobotoRegular);
             $idg->endBlock();
 
-        $idg->beginBlock()->setPadding(4, 10, 10, 10)->setBorder(2, '#500')->setBorderOpacity(0.9)->setMarginTop(20);
+        $idg->beginBlock()->setPadding(4, 10, 10, 10)
+            ->setBorder(2, '#500')->setBorderOpacity(0.9)->setMarginTop(20);
         $idg->text('Text block with border. Lorem ipsum dolor sit amet, 
                         consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                          Ut enim ad minim venia.')->setAlign(Imagick::ALIGN_CENTER)
@@ -70,10 +71,9 @@ $idg->beginDocument(20, 30, 20, 30);
             ->setFont($fontRobotoRegular)->setFontSize(18)->setAlign(Imagick::ALIGN_CENTER);
         $idg->endColumn();
         $idg->beginColumn(300);
-            $idg->text('Text in column. Text in column. Text in column. 
-            Text in column. Text in column. Text in column. Text in column.
-             Text in column. Text in column.')->setFont($fontRobotoRegular)->setFontSize(18);
-            $idg->image('test_image.jpg')->setMarginTop(10);
+            $idg->text('Column with rotated image. Column with rotated image. 
+            Column with rotated image.')->setFont($fontRobotoRegular)->setFontSize(18);
+            $idg->image('test_image.jpg')->setMarginTop(20)->setRotation(90);
         $idg->endColumn();
     $idg->endRow();
 
@@ -103,8 +103,10 @@ $idg->beginDocument(20, 30, 20, 30);
         $idg->endColumn();
     $idg->endRow();
 
-$idg->beginAbsoluteBlock(286, 73)->setWidth(270)->setBorder(2, 'white')->setPadding(0, 5, 15, 5)->setBackground('green', 0.5);
-    $idg->text('Absolute block on the bear')
+$idg->beginAbsoluteBlock(250, 120)->setWidth(200)
+    ->setBorder(2, 'white')->setPadding(0, 5, 15, 5)
+    ->setBackground('green', 0.5)->setRotation(10);
+    $idg->text('Absolute block with rotation')
     ->setFont($fontRobotoBold)->setFontSize(28)->setTextColor('white')->setAlign(Imagick::ALIGN_CENTER);
 $idg->endAbsoluteBlock();
 

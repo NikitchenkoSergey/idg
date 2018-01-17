@@ -93,6 +93,11 @@ trait Border {
         $draw->setStrokeOpacity($this->borderOpacity);
         $draw->setStrokeWidth($this->borderWidth);
 
+        $rotation = $this->getRotation();
+        if ($rotation) {
+            $draw->rotate($rotation);
+        }
+
         $draw->rectangle($this->getLeftOffset(), $this->getTopOffset(), $this->getLeftOffset() + $this->getWidth(), $this->getTopOffset() + $this->getHeight());
         $this->getIdg()->getCanvas()->drawImage($draw);
     }

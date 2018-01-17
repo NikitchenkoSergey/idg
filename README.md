@@ -5,13 +5,13 @@
 
 Fast and simple document image generator. This is a wrapper over Imagick with which you can create such images:
 <p align="center">
-       <img src="http://nikitchenko.ru/idg/index.png" width="550" alt="Example" />
+       <img src="http://nikitchenko.ru/idg/index2.png" width="550" alt="Example" />
 </p>
 See: examples/index.php
 
 ### Features
 * Any elements count and structure
-* `padding`, `margin`, `border` and `background` support
+* `padding`, `margin`, `border`, `background` and `rotation` support
 * Possibility to create custom elements
 * Simple markup (like html)
 * Possibility to custom canvas by Imagick methods
@@ -151,6 +151,13 @@ The element is responsible for its display
 | `$element->setBackgroundColor($value)` | `Element` | Setting background color |
 | `$element->setBackgroundOpacity($value)` | `Element` | Setting background opacity |
 | `$element->setBackground($color, $opacity)` | `Element` | Setting background |
+
+#### Rotation
+Rotation is inherit.
+| Method | Return | Description |
+| ---| --- | --- |
+| `$element->setRotation($value)` | `Element` | Setting rotation |
+| `$element->getRotation()` | `int` | Get rotation total rotation |
 
 
 ### Text (extends Element)

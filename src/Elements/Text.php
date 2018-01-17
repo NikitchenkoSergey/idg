@@ -83,6 +83,8 @@ class Text extends Element
         $lines = $this->getTextRows();
 
         $textHeight = 0;
+
+
         foreach ($lines as $line) {
             $draw = clone $fontStyle;
             $metrics = $this->getIdg()->getCanvas()->queryFontMetrics($draw, $line, false);
@@ -94,9 +96,12 @@ class Text extends Element
             } elseif ($this->align == Imagick::ALIGN_CENTER) {
                 $leftOffset = $this->getLeftOffset() + ($this->getWidth() / 2);
             }
-            $textHeight += $textLineHeight;
 
-            $this->getIdg()->getCanvas()->annotateImage($draw, $leftOffset, $this->getTopOffset() + $textHeight, $this->angle, $line);
+            $textHeight += $textLineHeight;
+            $draw->annotation($leftOffset, $this->getTopOffset() + $textHeight, $line);
+
+
+            $this->getIdg()->getCanvas()->drawImage($draw);
         }
     }
 
@@ -110,6 +115,8 @@ class Text extends Element
             return $this->fontStyle;
         }
 
+        $rotation = $this->getRotation() + $this->angle;
+
         $textDraw = new ImagickDraw();
         $textDraw->setFillColor(new \ImagickPixel($this->textColor));
         $textDraw->setFontSize($this->fontSize);
@@ -119,6 +126,10 @@ class Text extends Element
         $textDraw->setTextDecoration($this->decoration);
         if ($this->font) {
             $textDraw->setFont($this->font);
+        }
+
+        if ($rotation) {
+            $textDraw->rotate($rotation);
         }
 
         return $textDraw;

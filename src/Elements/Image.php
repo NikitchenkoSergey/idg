@@ -39,6 +39,11 @@ class Image extends Element
             $image->readImage($this->file);
         }
 
+        $rotation = $this->getRotation();
+        if ($rotation) {
+            $image->rotateImage('transparent', $rotation);
+        }
+
         $imageWidth = $image->getImageWidth();
         $imageHeight = $image->getImageHeight();
 

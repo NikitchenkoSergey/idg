@@ -6,6 +6,7 @@ use Idg\Elements\Properties\Background;
 use Idg\Elements\Properties\Border;
 use Idg\Elements\Properties\Margin;
 use Idg\Elements\Properties\Padding;
+use Idg\Elements\Properties\Rotation;
 use Idg\Idg;
 
 /**
@@ -21,6 +22,7 @@ class Element
     use Margin;
     use Border;
     use Background;
+    use Rotation;
 
     /**
      * @var string
