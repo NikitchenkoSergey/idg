@@ -66,6 +66,7 @@ class Text extends Element
             $draw = clone $fontStyle;
             $metrics = $this->getIdg()->getCanvas()->queryFontMetrics($draw, $line, false);
             $textLineHeight = $metrics['textHeight'];
+            $textLineWidth = $metrics['textWidth'];
             $textHeight += $textLineHeight;
 
         }
@@ -83,7 +84,6 @@ class Text extends Element
         $lines = $this->getTextRows();
 
         $textHeight = 0;
-
 
         foreach ($lines as $line) {
             $draw = clone $fontStyle;

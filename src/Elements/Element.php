@@ -108,6 +108,11 @@ class Element
     public function getWidth()
     {
         $result = $this->width;
+        // element has width
+        if ($result) {
+            $result += $this->marginLeft + $this->marginRight + $this->paddingLeft + $this->paddingRight;
+        }
+
         if (!$result && $this->parent) {
             $result = $this->parent->getWidth();
             $result -= $this->parent->paddingLeft;
@@ -215,6 +220,15 @@ class Element
     public function increaseHeight($value)
     {
         $this->height = ($this->height ? $this->height : 0) + $value;
+    }
+
+    /**
+     * increase width
+     * @param $value
+     */
+    public function increaseWidth($value)
+    {
+        $this->width = ($this->width ? $this->width : 0) + $value;
     }
 
     /**

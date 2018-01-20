@@ -19,9 +19,9 @@ $idg->beginDocument();
                     Duis aute irure dolor in reprehenderit in voluptate 
                                         velit esse cillum dolore eu fugiat nulla pariatur.')->setMarginBottom(50);
 
-            $idg->image('test_image.jpg')->setPaddingLeft(210);
+            $idg->image('test_image.jpg')->setMarginLeft(210)->setPadding(4, 4, 4, 4)->setMarginBottom(20)->setBorder(2, 'black');
 
-            $idg->text('Image with padding left')->setTextColor('#555')->setAlign(Imagick::ALIGN_CENTER);
+            $idg->text('Image with margin left and border')->setTextColor('#555')->setAlign(Imagick::ALIGN_CENTER);
         $idg->endBlock();
     $idg->endBlock();
 

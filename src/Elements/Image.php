@@ -48,6 +48,7 @@ class Image extends Element
         $imageHeight = $image->getImageHeight();
 
         $this->increaseHeight($imageHeight);
+        $this->increaseWidth($imageWidth);
 
         $this->image = $image;
     }
