@@ -6,6 +6,8 @@
 namespace Idg\Elements\Properties;
 
 use Idg\Elements\Element;
+use Idg\Elements\Properties\Values\Gradient;
+use Imagick;
 
 trait Background {
 
@@ -48,7 +50,7 @@ trait Background {
      * @param $color
      * @return $this
      */
-    public function setBackground($color, $opacity)
+    public function setBackground($color, $opacity = 1)
     {
         $this->backgroundOpacity = $opacity;
         $this->backgroundColor = $color;
@@ -67,18 +69,30 @@ trait Background {
             return false;
         }
 
-        $draw = new \ImagickDraw();
-        $fillColor = new \ImagickPixel($this->backgroundColor);
+        if ($this->backgroundColor instanceof Gradient) {
+            $gradient = new Imagick();
+            $gradient->newPseudoImage($this->getWidth(), $this->getHeight(), $this->backgroundColor->getPseudoString());
+            $rotation = $this->getRotation();
+            if ($rotation) {
+                $gradient->rotateImage('transparent', $rotation);
+            }
+            $gradient->setImageOpacity($this->backgroundOpacity);
 
-        $draw->setFillColor($fillColor);
-        $draw->setFillOpacity($this->backgroundOpacity);
+            $this->getIdg()->getCanvas()->compositeImage($gradient, Imagick::COMPOSITE_DEFAULT, $this->getLeftOffset(), $this->getTopOffset());
+        } else {
+            $draw = new \ImagickDraw();
+            $fillColor = new \ImagickPixel($this->backgroundColor);
 
-        $rotation = $this->getRotation();
-        if ($rotation) {
-            $draw->rotate($rotation);
+            $draw->setFillColor($fillColor);
+            $draw->setFillOpacity($this->backgroundOpacity);
+
+            $rotation = $this->getRotation();
+            if ($rotation) {
+                $draw->rotate($rotation);
+            }
+
+            $draw->rectangle($this->getLeftOffset(), $this->getTopOffset(), $this->getLeftOffset() + $this->getWidth(), $this->getTopOffset() + $this->getHeight());
+            $this->getIdg()->getCanvas()->drawImage($draw);
         }
-
-        $draw->rectangle($this->getLeftOffset(), $this->getTopOffset(), $this->getLeftOffset() + $this->getWidth(), $this->getTopOffset() + $this->getHeight());
-        $this->getIdg()->getCanvas()->drawImage($draw);
     }
 }

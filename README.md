@@ -148,7 +148,7 @@ The element is responsible for its display
 #### Background
 | Method | Return | Description |
 | ---| --- | --- |
-| `$element->setBackgroundColor($value)` | `Element` | Setting background color |
+| `$element->setBackgroundColor($value)` | `Element` | Setting background color. `$value` can be Gradient object |
 | `$element->setBackgroundOpacity($value)` | `Element` | Setting background opacity |
 | `$element->setBackground($color, $opacity)` | `Element` | Setting background |
 
@@ -173,11 +173,11 @@ Rotation is inherit.
 | `$element->setFontStyle(\ImagickDraw $draw)` | `Element` | Setting style, it override all attributes |
 
 
-### Padding, margin and border
+### Padding, margin, border and gradient on background
 <p align="center">
-       <img src="http://nikitchenko.ru/idg/padding_margin.png" alt="Example" />
+       <img src="http://nikitchenko.ru/idg/properties.png" alt="Example" />
 </p>
-See: examples/padding_margin.php <br />
+See: examples/properties.php <br />
 
 ## Custom elements
 <p align="center">
