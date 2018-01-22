@@ -13,15 +13,18 @@ $idg->beginDocument();
                 Duis aute irure dolor in reprehenderit in voluptate 
                                     velit esse cillum dolore eu fugiat nulla pariatur.')->setTextColor('white');
 
-        $idg->beginBlock()->setPadding(50, 50, 60, 50)->setBorder(2, 'black')->setMargin(60, 30, 30, 30)
+        $idg->beginBlock()
+            ->setPadding(50, 50, 60, 50)->setBorder(2, 'black')->setMargin(60, 30, 30, 30)
             ->setBackground(new Gradient('white', 'black'));
-        $idg->text('Text in block with padding, margin and border. 
-            Lorem ipsum dolor sit amet. Ut enim ad minim veniam, quis 
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    Duis aute irure dolor in reprehenderit in voluptate 
-                                        velit esse cillum dolore eu fugiat nulla pariatur.')->setMarginBottom(50);
+            $idg->text('Text in block with padding, margin and border. 
+                Lorem ipsum dolor sit amet. Ut enim ad minim veniam, quis 
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Duis aute irure dolor in reprehenderit in voluptate 
+                                            velit esse cillum dolore eu fugiat nulla pariatur.')->setMarginBottom(50);
 
-            $idg->image('test_image.jpg')->setMarginLeft(210)->setBackground('white')->setPadding(4, 4, 4, 4)->setMarginBottom(20)->setBorder(2, 'black');
+            $idg->image('test_image.jpg')->setMarginLeft(function (\Idg\Elements\Element $element) {
+                return $element->width - 50;
+            })->setBackground('white')->setPadding(4, 4, 4, 4)->setMarginBottom(20)->setBorder(2, 'black');
 
             $idg->text('Image with margin left and border')->setTextColor('white')->setAlign(Imagick::ALIGN_CENTER);
         $idg->endBlock();
@@ -29,6 +32,7 @@ $idg->beginDocument();
 
 $idg->endDocument();
 $idg->compose();
+
 
 header('Content-Type: image/' . $idg->getCanvas()->getImageFormat());
 print $idg->getImageBlob();

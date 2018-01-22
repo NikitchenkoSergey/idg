@@ -12,17 +12,17 @@ trait Border {
     /**
      * @var integer
      */
-    public $borderWidth = 0;
+    protected $borderWidth = 0;
 
     /**
      * @var string
      */
-    public $borderColor = 'black';
+    protected $borderColor = 'black';
 
     /**
      * @var int
      */
-    public $borderOpacity = 1;
+    protected $borderOpacity = 1;
 
     /**
      * Setting border color

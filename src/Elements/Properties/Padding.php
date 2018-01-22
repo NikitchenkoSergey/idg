@@ -1,31 +1,38 @@
 <?php
-/**
- * Padding trait
- */
 
 namespace Idg\Elements\Properties;
 
+/**
+ * Trait Padding
+ * @package Idg\Elements\Properties
+ *
+ * @property integer $paddingTop
+ * @property integer $paddingLeft
+ * @property integer $paddingRight
+ * @property integer $paddingBottom
+ *
+ */
 trait Padding {
 
     /**
      * @var integer
      */
-    public $paddingTop = 0;
+    protected $_paddingTop = 0;
 
     /**
      * @var integer
      */
-    public $paddingLeft = 0;
+    protected $_paddingLeft = 0;
 
     /**
      * @var integer
      */
-    public $paddingRight = 0;
+    protected $_paddingRight = 0;
 
     /**
      * @var integer
      */
-    public $paddingBottom = 0;
+    protected $_paddingBottom = 0;
 
     /**
      * Setting padding top

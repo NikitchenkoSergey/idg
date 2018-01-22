@@ -115,10 +115,8 @@ class Idg
         }
 
         $document = new Document();
-        $document->top = $marginTop;
-        $document->left = $marginLeft;
-        $document->paddingBottom = $marginBottom;
-        $document->width = $this->width - ($marginLeft + $marginRight);
+        $document->setTop($marginTop)->setLeft($marginLeft)->setPaddingBottom($marginBottom);
+        $document->setWidth($this->width - ($marginLeft + $marginRight));
         return $this->beginElement($document);
     }
 
@@ -157,8 +155,7 @@ class Idg
     public function beginAbsoluteBlock($top, $left)
     {
         $element = new AbsoluteBlock();
-        $element->top = $top;
-        $element->left = $left;
+        $element->setTop($top)->setLeft($left);
         return $this->beginElement($element);
     }
 
@@ -202,7 +199,7 @@ class Idg
 
         /** @var Column $element */
         $element = new Column();
-        $element->width = $width;
+        $element->setWidth($width);
         return $this->beginElement($element);
     }
 
@@ -256,7 +253,7 @@ class Idg
         $content = preg_replace("/\r\n|\r|\n|/",'', $content);
         // removing multi spaces
         $content = preg_replace("/\s+/",' ', $content);
-        $element->content = $content;
+        $element->setContent($content);
 
         return $this->addElement($element);
     }
@@ -270,8 +267,8 @@ class Idg
     public function image($file, $fromBlob = false)
     {
         $element = new Image();
-        $element->file = $file;
-        $element->fromBlob = $fromBlob;
+        $element->setFile($file);
+        $element->setFromBlob($fromBlob);
         return $this->addElement($element);
     }
 

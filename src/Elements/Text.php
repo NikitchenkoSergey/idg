@@ -14,41 +14,41 @@ class Text extends Element
     /**
      * @var string
      */
-    public $content;
+    protected $content;
     /**
      * @var \ImagickDraw
      */
-    public $fontStyle;
+    protected $fontStyle;
 
     /**
      * @var int
      */
-    public $angle = 0;
+    protected $angle = 0;
 
     /**
      * @var int
      */
-    public $align = Imagick::ALIGN_LEFT;
+    protected $align = Imagick::ALIGN_LEFT;
 
     /**
      * @var string
      */
-    public $font;
+    protected $font;
 
     /**
      * @var int
      */
-    public $fontSize = 16;
+    protected $fontSize = 16;
 
     /**
      * @var string
      */
-    public $textColor = 'black';
+    protected $textColor = 'black';
 
     /**
      * @var int
      */
-    public $decoration = Imagick::DECORATION_NO;
+    protected $decoration = Imagick::DECORATION_NO;
 
 
     /**
@@ -238,6 +238,16 @@ class Text extends Element
     public function setTextColor($value)
     {
         $this->textColor = $value;
+        return $this;
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setContent($value)
+    {
+        $this->content = $value;
         return $this;
     }
 }

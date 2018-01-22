@@ -1,31 +1,38 @@
 <?php
-/**
- * Margin trait
- */
 
 namespace Idg\Elements\Properties;
 
+/**
+ * Trait Margin
+ * @package Idg\Elements\Properties
+ *
+ * @property integer $marginTop
+ * @property integer $marginLeft
+ * @property integer $marginRight
+ * @property integer $marginBottom
+ *
+ */
 trait Margin {
 
     /**
      * @var integer
      */
-    public $marginTop = 0;
+    protected $_marginTop = 0;
 
     /**
      * @var integer
      */
-    public $marginLeft = 0;
+    protected $_marginLeft = 0;
 
     /**
      * @var integer
      */
-    public $marginRight = 0;
+    protected $_marginRight = 0;
 
     /**
      * @var integer
      */
-    public $marginBottom = 0;
+    protected $_marginBottom = 0;
 
     /**
      * Setting margin top
@@ -40,7 +47,7 @@ trait Margin {
 
     /**
      * Setting margin bottom
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setMarginLeft($value)
@@ -51,7 +58,7 @@ trait Margin {
 
     /**
      * Setting margin right
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setMarginRight($value)
@@ -62,7 +69,7 @@ trait Margin {
 
     /**
      * Setting margin bottom
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setMarginBottom($value)
@@ -73,10 +80,10 @@ trait Margin {
 
     /**
      * Setting margin like css
-     * @param int $top
-     * @param int $right
-     * @param int $bottom
-     * @param int $left
+     * @param int|\Closure $top
+     * @param int|\Closure $right
+     * @param int|\Closure $bottom
+     * @param int|\Closure $left
      * @return $this
      */
     public function setMargin($top, $right, $bottom, $left)

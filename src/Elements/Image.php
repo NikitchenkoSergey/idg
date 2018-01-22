@@ -12,12 +12,12 @@ class Image extends Element
     /**
      * @var string
      */
-    public $file;
+    protected $file;
 
     /**
      * @var boolean
      */
-    public $fromBlob;
+    protected $fromBlob;
 
 
     /**
@@ -64,5 +64,25 @@ class Image extends Element
             $this->getLeftOffset() + $this->paddingLeft,
             $this->getTopOffset() + $this->paddingTop
         );
+    }
+
+    /**
+     * @param $file
+     * @return $this
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+        return $this;
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setFromBlob($value)
+    {
+        $this->fromBlob = $value;
+        return $this;
     }
 }

@@ -1,7 +1,7 @@
 {
     "name": "idg/idg",
-    "description": "Image document generator",
-    "keywords": ["php", "image", "document", "generator"],
+    "description": "Document image generator",
+    "keywords": ["php", "image", "document", "generator", "imagick", "text-to-image"],
     "homepage": "https://github.com/NikitchenkoSergey/idg",
     "type": "library",
     "license": "MIT",

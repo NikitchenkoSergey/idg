@@ -14,12 +14,12 @@ trait Background {
     /**
      * @var integer
      */
-    public $backgroundOpacity = 1;
+    protected $backgroundOpacity = 1;
 
     /**
      * @var string
      */
-    public $backgroundColor;
+    protected $backgroundColor;
 
     /**
      * Setting background color

@@ -7,17 +7,25 @@ use Idg\Elements\Properties\Border;
 use Idg\Elements\Properties\Margin;
 use Idg\Elements\Properties\Padding;
 use Idg\Elements\Properties\Rotation;
+use Idg\Exceptions\ValueException;
 use Idg\Idg;
 
 /**
  * Class Element
  * @package Idg\Elements
+ *
+ * @property integer $top
+ * @property integer $left
+ * @property integer $width
+ * @property integer $height
+ * @property integer $staticHeight
  */
 class Element
 {
     /**
      * Properties
      */
+    use ComputedProperties;
     use Padding;
     use Margin;
     use Border;
@@ -42,32 +50,32 @@ class Element
     /**
      * @var integer
      */
-    public $top;
+    protected $_top;
 
     /**
      * @var integer
      */
-    public $left;
+    protected $_left;
 
     /**
      * @var integer
      */
-    public $width;
+    protected $_width;
 
     /**
      * @var integer
      */
-    public $height;
+    protected $_height;
 
     /**
      * @var integer
      */
-    public $staticHeight;
+    protected $_staticHeight;
 
     /**
      * @var \Closure
      */
-    public $afterRender;
+    protected $afterRender;
 
     /**
      * @param Element $element
@@ -359,7 +367,7 @@ class Element
 
     /**
      * Setting top
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setTop($value)
@@ -370,7 +378,7 @@ class Element
 
     /**
      * Setting left
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setLeft($value)
@@ -381,7 +389,7 @@ class Element
 
     /**
      * Setting width
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setWidth($value)
@@ -392,7 +400,7 @@ class Element
 
     /**
      * Setting static height
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setStaticHeight($value)

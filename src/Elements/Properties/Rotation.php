@@ -12,7 +12,7 @@ trait Rotation {
     /**
      * @var integer
      */
-    public $rotation = 0;
+    protected $rotation = 0;
 
 
     /**
