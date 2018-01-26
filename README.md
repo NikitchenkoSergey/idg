@@ -183,7 +183,7 @@ See: examples/properties.php <br />
 ```php
 // .....
 $idg->beginBlock();
-    $idg->text('Block with height and width like prev.')
+    $idg->text('Text in block.')
             ->setMargin(10, 20, 20, 20);
 $idg->endElement();
 $idg->beginBlock()->setStaticHeight(function(\Idg\Elements\Element $element) {
@@ -192,6 +192,7 @@ $idg->beginBlock()->setStaticHeight(function(\Idg\Elements\Element $element) {
         $idg->text('Block with height like prev.')
             ->setMargin(10, 20, 20, 20);
 $idg->endBlock();
+// .....
 ```
 
 <p align="center">
