@@ -185,7 +185,7 @@ See: examples/properties.php <br />
 $idg->beginBlock();
     $idg->text('Text in block.')
             ->setMargin(10, 20, 20, 20);
-$idg->endElement();
+$idg->endBlock();
 $idg->beginBlock()->setStaticHeight(function(\Idg\Elements\Element $element) {
             return $element->getPrevSibling()->getHeight();
         });
