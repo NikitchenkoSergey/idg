@@ -1,32 +1,36 @@
 <?php
-/**
- * Border trait
- */
 
 namespace Idg\Elements\Properties;
 
 use Idg\Elements\Element;
 
+/**
+ * Trait Border
+ * @property integer $borderWidth
+ * @property string $borderColor
+ * @property float $borderOpacity
+ * @package Idg\Elements\Properties
+ */
 trait Border {
 
     /**
      * @var integer
      */
-    protected $borderWidth = 0;
+    protected $_borderWidth = 0;
 
     /**
      * @var string
      */
-    protected $borderColor = 'black';
+    protected $_borderColor = 'black';
 
     /**
      * @var int
      */
-    protected $borderOpacity = 1;
+    protected $_borderOpacity = 1;
 
     /**
      * Setting border color
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setBorderColor($value)
@@ -37,7 +41,7 @@ trait Border {
 
     /**
      * Setting border color
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setBorderWidth($value)
@@ -48,7 +52,7 @@ trait Border {
 
     /**
      * Setting border opacity
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setBorderOpacity($value)
@@ -60,8 +64,8 @@ trait Border {
 
     /**
      * Setting border
-     * @param $width
-     * @param $color
+     * @param int|\Closure $width
+     * @param string|\Closure $color
      * @return $this
      */
     public function setBorder($width, $color)

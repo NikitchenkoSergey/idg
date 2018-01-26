@@ -1,23 +1,25 @@
 <?php
-/**
- * Rotation trait
- */
 
 namespace Idg\Elements\Properties;
 
 use Idg\Elements\Element;
 
+/**
+ * Trait Rotation
+ * @package Idg\Elements\Properties
+ * @property integer $rotation
+ */
 trait Rotation {
 
     /**
      * @var integer
      */
-    protected $rotation = 0;
+    protected $_rotation = 0;
 
 
     /**
      * Setting rotation
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setRotation($value)

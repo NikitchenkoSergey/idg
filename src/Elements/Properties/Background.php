@@ -1,7 +1,4 @@
 <?php
-/**
- * Background trait
- */
 
 namespace Idg\Elements\Properties;
 
@@ -9,21 +6,27 @@ use Idg\Elements\Element;
 use Idg\Elements\Properties\Values\Gradient;
 use Imagick;
 
+/**
+ * Trait Background
+ * @property float $backgroundOpacity
+ * @property string|Gradient $backgroundColor
+ * @package Idg\Elements\Properties
+ */
 trait Background {
 
     /**
      * @var integer
      */
-    protected $backgroundOpacity = 1;
+    protected $_backgroundOpacity = 1;
 
     /**
      * @var string
      */
-    protected $backgroundColor;
+    protected $_backgroundColor;
 
     /**
      * Setting background color
-     * @param int $value
+     * @param string|Gradient|\Closure $value
      * @return $this
      */
     public function setBackgroundColor($value)
@@ -34,7 +37,7 @@ trait Background {
 
     /**
      * Setting background opacity
-     * @param int $value
+     * @param int|\Closure $value
      * @return $this
      */
     public function setBackgroundOpacity($value)
@@ -46,8 +49,8 @@ trait Background {
 
     /**
      * Setting background
-     * @param $opacity
-     * @param $color
+     * @param string|Gradient|\Closure $color
+     * @param int|\Closure $opacity
      * @return $this
      */
     public function setBackground($color, $opacity = 1)
