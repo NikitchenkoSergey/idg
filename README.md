@@ -246,3 +246,8 @@ For more customization you can use standart Imagick methods:
 $idg->compose();
 $idg->getCanvas()->gaussianBlurImage(10, 20);
 ```
+
+<h2>Donation</h2>
+
+<p>PayPal: <a href="https://www.paypal.me/NikitchenkoSergey/25">nikitchenko.sergey@yandex.ru</a></p>
+<p>Yandex.Money: <a href="https://money.yandex.ru/to/410011704835851/200">410011704835851</a></p>
