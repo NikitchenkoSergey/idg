@@ -4,6 +4,7 @@ php:
   - '7.0'
   - '7.1'
   - '7.2'
+  - '7.3'
 install:
   - printf "\n" | pecl install imagick
   - composer self-update
