@@ -19,6 +19,8 @@ class TextTest  extends \PHPUnit\Framework\TestCase
      */
     public function testTextInBlocks()
     {
+        $fontRobotoRegular = dirname(__FILE__) . '/data/RobotoCondensed-Regular.ttf';
+
         $idg = $this->getIdg();
         $idg->beginDocument(10);
         $idg->beginBlock()->setTop(20)->setLeft(20);
@@ -26,7 +28,7 @@ class TextTest  extends \PHPUnit\Framework\TestCase
 
             $idg->endBlock();
             $idg->beginBlock()->setTop(10);
-                $idg->text('test test')->setFontSize(20);
+                $idg->text('test test')->setFontSize(20)->setFont($fontRobotoRegular);
             $idg->endBlock();
         $idg->endBlock();
 
