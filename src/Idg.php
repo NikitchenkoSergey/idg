@@ -9,11 +9,9 @@ use Idg\Elements\Block;
 use Idg\Elements\Image;
 use Idg\Elements\Row;
 use Idg\Elements\Text;
-use Idg\Exceptions\Exception;
 use Idg\Exceptions\StructureException;
 use Imagick;
 use ImagickPixel;
-use ImagickDraw;
 
 /**
  * Class Idg
@@ -53,6 +51,7 @@ class Idg
      * @param integer $minHeight
      * @param ImagickPixel $background
      * @param string $type
+     * @throws \ImagickException
      */
     public function __construct($width, $maxHeight, $minHeight = null, $background = null, $type = 'png')
     {
@@ -122,6 +121,7 @@ class Idg
 
     /**
      * End document
+     * @throws StructureException
      */
     public function endDocument()
     {
@@ -131,6 +131,7 @@ class Idg
     /**
      * Begin relative block
      * @return Element
+     * @throws StructureException
      */
     public function beginBlock()
     {
@@ -140,6 +141,7 @@ class Idg
 
     /**
      * End block
+     * @throws StructureException
      */
     public function endBlock()
     {
@@ -148,9 +150,10 @@ class Idg
 
     /**
      * Begin absolute block
-     * @param null $top
-     * @param null $left
+     * @param int|\Closure $top
+     * @param int|\Closure $left
      * @return Element
+     * @throws StructureException
      */
     public function beginAbsoluteBlock($top, $left)
     {
@@ -161,6 +164,7 @@ class Idg
 
     /**
      * End block
+     * @throws StructureException
      */
     public function endAbsoluteBlock()
     {
@@ -170,6 +174,7 @@ class Idg
     /**
      * Begin row
      * @return Element
+     * @throws StructureException
      */
     public function beginRow()
     {
@@ -179,6 +184,7 @@ class Idg
 
     /**
      * End row
+     * @throws StructureException
      */
     public function endRow()
     {
@@ -205,6 +211,7 @@ class Idg
 
     /**
      * End column
+     * @throws StructureException
      */
     public function endColumn()
     {
@@ -231,6 +238,7 @@ class Idg
 
     /**
      * End element
+     * @throws StructureException
      */
     public function endElement()
     {
@@ -255,7 +263,10 @@ class Idg
         $content = preg_replace("/\s+/",' ', $content);
         $element->setContent($content);
 
-        return $this->addElement($element);
+        /** @var Text $text */
+        $text = $this->addElement($element);
+
+        return $text;
     }
 
     /**
@@ -269,7 +280,11 @@ class Idg
         $element = new Image();
         $element->setFile($file);
         $element->setFromBlob($fromBlob);
-        return $this->addElement($element);
+
+        /** @var Image $image */
+        $image = $this->addElement($element);
+
+        return $image;
     }
 
     /**
@@ -319,6 +334,8 @@ class Idg
     /**
      * Return image blob
      * @return string
+     *
+     * @throws StructureException
      */
     public function getImageBlob()
     {

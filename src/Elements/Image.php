@@ -27,6 +27,8 @@ class Image extends Element
 
     /**
      * @inheritdoc
+     *
+     * @throws \ImagickException
      */
     public function beforeRender()
     {

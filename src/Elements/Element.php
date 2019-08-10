@@ -7,7 +7,6 @@ use Idg\Elements\Properties\Border;
 use Idg\Elements\Properties\Margin;
 use Idg\Elements\Properties\Padding;
 use Idg\Elements\Properties\Rotation;
-use Idg\Exceptions\ValueException;
 use Idg\Idg;
 
 /**

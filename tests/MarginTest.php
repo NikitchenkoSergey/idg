@@ -8,6 +8,7 @@ class MarginTest  extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return \Idg\Idg
+     * @throws ImagickException
      */
     protected function getIdg()
     {
@@ -16,6 +17,8 @@ class MarginTest  extends \PHPUnit\Framework\TestCase
 
     /**
      * Test blocks with padding and margin
+     * @throws ImagickException
+     * @throws StructureException
      */
     public function testBlocksWithPaddingAndMargin()
     {

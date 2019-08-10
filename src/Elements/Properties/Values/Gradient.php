@@ -39,8 +39,8 @@ class Gradient extends Value
 
     /**
      * Gradient constructor.
-     * @param $beginColor
-     * @param $endColor
+     * @param string $beginColor
+     * @param string $endColor
      * @param string $type
      * @throws ValueException
      */

@@ -3,6 +3,7 @@
 namespace Idg\Elements\Properties;
 
 use Idg\Elements\Element;
+use Idg\Idg;
 
 /**
  * Trait Border
@@ -103,6 +104,8 @@ trait Border {
         }
 
         $draw->rectangle($this->getLeftOffset(), $this->getTopOffset(), $this->getLeftOffset() + $this->getWidth(), $this->getTopOffset() + $this->getHeight());
-        $this->getIdg()->getCanvas()->drawImage($draw);
+        /** @var Idg $idg */
+        $idg = $this->getIdg();
+        $idg->getCanvas()->drawImage($draw);
     }
 }

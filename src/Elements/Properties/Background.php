@@ -4,6 +4,7 @@ namespace Idg\Elements\Properties;
 
 use Idg\Elements\Element;
 use Idg\Elements\Properties\Values\Gradient;
+use Idg\Idg;
 use Imagick;
 
 /**
@@ -63,6 +64,8 @@ trait Background {
     /**
      * Rendering background
      * @return bool
+     *
+     * @throws \ImagickException
      */
     public function renderBackground()
     {
@@ -71,6 +74,9 @@ trait Background {
         if (!$this->backgroundColor) {
             return false;
         }
+
+        /** @var Idg $idg */
+        $idg = $this->getIdg();
 
         if ($this->backgroundColor instanceof Gradient) {
             $gradient = new Imagick();
@@ -81,7 +87,7 @@ trait Background {
             }
             $gradient->setImageOpacity($this->backgroundOpacity);
 
-            $this->getIdg()->getCanvas()->compositeImage($gradient, Imagick::COMPOSITE_DEFAULT, $this->getLeftOffset(), $this->getTopOffset());
+            $idg->getCanvas()->compositeImage($gradient, Imagick::COMPOSITE_DEFAULT, $this->getLeftOffset(), $this->getTopOffset());
         } else {
             $draw = new \ImagickDraw();
             $fillColor = new \ImagickPixel($this->backgroundColor);
@@ -95,7 +101,7 @@ trait Background {
             }
 
             $draw->rectangle($this->getLeftOffset(), $this->getTopOffset(), $this->getLeftOffset() + $this->getWidth(), $this->getTopOffset() + $this->getHeight());
-            $this->getIdg()->getCanvas()->drawImage($draw);
+            $idg->getCanvas()->drawImage($draw);
         }
     }
 }
